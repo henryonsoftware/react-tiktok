@@ -1,0 +1,20 @@
+@import 'normalize.css';
+
+:root {
+  --primary: #fe2c55;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji';
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-fg-default);
+}

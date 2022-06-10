@@ -2,9 +2,17 @@
 
 :root {
   --primary: #fe2c55;
+  --black: #333;
+  --text-color: rgba(22, 24, 35, 1);
+
+  // Default layout
+  --default-layout-header-height: 60px;
+  --default-layout-width: 1150px;
 }
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -12,9 +20,21 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji';
-  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
   line-height: 1.5;
-  color: var(--color-fg-default);
+  text-rendering: optimizeSpeed;
+  color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+  border: none;
+  outline: none;
+}
+
+a[href] {
+  color: var(--text-color);
+  text-decoration: none;
 }

@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(22, 24, 35, 0.03) none repeat scroll 0% 0%;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.info {
+  flex: 1;
+}
+
+.username {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  .verifyBadge {
+    margin-left: 4px;
+    color: #20d5ec;
+  }
+}
+
+.fullname {
+  font-size: 14px;
+  font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  color: rgba(22, 24, 35, 0.5);
+}

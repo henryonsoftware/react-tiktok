@@ -9,8 +9,6 @@ import {
   faMagnifyingGlass,
   faSpinner,
   faPlus,
-  faSignIn,
-  faDownload,
   faEllipsisVertical,
   faEarthAsia,
   faCircleQuestion,
@@ -28,6 +26,21 @@ const MENU_ITEMS = [
     icon: <FontAwesomeIcon icon={faEarthAsia} />,
     title: 'English',
     to: '',
+    children: {
+      title: 'Language',
+      data: [
+        {
+          type: 'language',
+          code: 'en_US',
+          title: 'English',
+        },
+        {
+          type: 'language',
+          code: 'vi_VN',
+          title: 'Tiếng Việt',
+        },
+      ],
+    },
   },
   {
     icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -43,6 +56,17 @@ const MENU_ITEMS = [
 
 function Header() {
   const [searchResult, setSearchResult] = useState([])
+
+  // Handle logic
+  const handleMenuChange = (menuItem) => {
+    switch (menuItem.language) {
+      case 'language':
+        // Handle logic
+        break
+      default:
+        break
+    }
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -86,11 +110,9 @@ function Header() {
           <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>}>
             Upload
           </Button>
-          <Button primaryBtn rightIcon={<FontAwesomeIcon icon={faSignIn}></FontAwesomeIcon>}>
-            Log in
-          </Button>
+          <Button primaryBtn>Log in</Button>
 
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cx('more-btn')}>
               <FontAwesomeIcon icon={faEllipsisVertical}></FontAwesomeIcon>
             </button>

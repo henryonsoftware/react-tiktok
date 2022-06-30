@@ -16,6 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0 var(--default-layout-horizontal-spacer);
 }
 
 .logo {
@@ -103,4 +104,5 @@
   padding: 0 4px;
   font-size: 20px;
   background-color: transparent;
+  cursor: pointer;
 }

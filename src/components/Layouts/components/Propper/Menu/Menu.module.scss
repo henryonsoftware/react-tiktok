@@ -25,3 +25,27 @@
 }
 
 // Menu items
+
+// Menu header
+.header {
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.back-btn {
+  cursor: pointer;
+  width: 50px;
+  height: 100%;
+  background-color: transparent;
+}
+
+.header-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 22px;
+  font-weight: 600;
+  font-size: 16px;
+}

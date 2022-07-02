@@ -1,8 +1,8 @@
 .wrapper {
   width: 100%;
-  padding-top: 8px;
+  padding: 8px 0;
   background: rgb(255, 255, 255);
   box-shadow: rgb(0 0 0 /12%) 0px 2px 12px;
   border-radius: 8px;
-  max-height: min((100vh - 96px) - 60px, 734px);
+  // max-height: min((100vh - 96px) - 60px, 734px);
 }

@@ -39,3 +39,28 @@ a[href] {
   color: var(--text-color);
   text-decoration: none;
 }
+
+// Custom Tippy tooltip
+body {
+  .tippy-box {
+    text-align: left;
+    background-color: rgba(84, 84, 84, 0.92);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    line-height: 22px;
+    padding: 8px;
+  }
+
+  .tippy-arrow {
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+    top: -8px;
+  }
+
+  .tippy-content {
+    padding: 0;
+  }
+}

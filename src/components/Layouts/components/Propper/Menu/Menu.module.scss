@@ -18,13 +18,15 @@
   &:hover {
     background: rgba(22, 24, 35, 0.03) none repeat scroll 0% 0%;
   }
+
+  &.separate {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+  }
 }
 
 .menu-popper {
   padding-bottom: 8px;
 }
-
-// Menu items
 
 // Menu header
 .header {

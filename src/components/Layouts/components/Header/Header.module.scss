@@ -99,10 +99,42 @@
   }
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+}
+
 .more-btn {
   margin-left: 16px;
   padding: 0 4px;
   font-size: 20px;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.action-btn {
+  color: rgba(22, 24, 35, 1);
+  background-color: transparent;
+  margin-left: 16px;
+  cursor: pointer;
+  height: 32px;
+  position: relative;
+
+  svg {
+    display: block;
+    width: 26px;
+    height: 26px;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
+  }
+}
+
+.avatar {
+  margin-left: 16px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
   cursor: pointer;
 }

@@ -13,7 +13,6 @@ import {
   faEarthAsia,
   faCircleQuestion,
   faKeyboard,
-  faCloudUpload,
   faUser,
   faGear,
   faArrowRightFromBracket,
@@ -25,7 +24,8 @@ import { Wrapper as PropperWrapper } from '~/components/Layouts/components/Propp
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Layouts/components/Propper/Menu'
-import { faTiktok } from '@fortawesome/free-brands-svg-icons'
+import UploadIcon from '~/components/Icons'
+import Image from '~/components/Image'
 
 const cx = classNames.bind(styles)
 
@@ -147,7 +147,7 @@ function Header() {
             <>
               <Tippy content="Upload video" placement="bottom" delay={200}>
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <UploadIcon classNames="svg-inline--fa fa-cloud-arrow-up" />
                 </button>
               </Tippy>
             </>
@@ -162,10 +162,11 @@ function Header() {
 
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 className={cx('avatar')}
                 src="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
                 alt="User avatar"
+                fallback="https://static.fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
               />
             ) : (
               <button className={cx('more-btn')}>

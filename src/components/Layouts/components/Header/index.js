@@ -24,8 +24,8 @@ import { Wrapper as PropperWrapper } from '~/components/Layouts/components/Propp
 import AccountItem from '~/components/AccountItem'
 import Button from '~/components/Button'
 import Menu from '~/components/Layouts/components/Propper/Menu'
-import UploadIcon from '~/components/Icons'
 import Image from '~/components/Image'
+import { InboxIcon, MessageIcon } from '~/components/Icons'
 
 const cx = classNames.bind(styles)
 
@@ -146,14 +146,22 @@ function Header() {
           {currentUser ? (
             <>
               <Tippy content="Upload video" placement="bottom" delay={200}>
-                <button className={cx('action-btn')}>
-                  <UploadIcon classNames="svg-inline--fa fa-cloud-arrow-up" />
-                </button>
+                <>
+                  <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                    Upload
+                  </Button>
+                  <button className={cx('action-btn')}>
+                    <MessageIcon classNames="tiktok-9oofjg-StyledIcon e1nx07zo1" />
+                  </button>
+                  <button className={cx('action-btn')}>
+                    <InboxIcon classNames="tiktok-1g0p6jv-StyledInboxIcon e18kkhh41" />
+                  </button>
+                </>
               </Tippy>
             </>
           ) : (
             <>
-              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>}>
+              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} />}>
                 Upload
               </Button>
               <Button primaryBtn>Log in</Button>

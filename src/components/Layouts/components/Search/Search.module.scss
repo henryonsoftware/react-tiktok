@@ -76,3 +76,17 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.loading {
+  animation: spiner 0.7s linear infinite;
+}
+
+@keyframes spiner {
+  from {
+    transform: translateY(-50%) rotate(0);
+  }
+
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}

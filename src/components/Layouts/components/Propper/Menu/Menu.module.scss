@@ -28,12 +28,17 @@
   padding-bottom: 8px;
 }
 
+.menu-body {
+  overflow: scroll;
+}
+
 // Menu header
 .header {
   position: relative;
   height: 50px;
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .back-btn {

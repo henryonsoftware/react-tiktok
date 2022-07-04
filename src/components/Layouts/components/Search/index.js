@@ -61,6 +61,8 @@ function Search() {
   }, [debounce])
 
   return (
+    // Interactive tippy element may not be accessible via keyboard navigation because it is not directly after the reference element in the DOM source order.
+    // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
     <div>
       <HeadlessTippy
         interactive

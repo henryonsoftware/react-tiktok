@@ -7,6 +7,7 @@ import { Wrapper as PropperWrapper } from '~/components/Layouts/components/Propp
 import AccountItem from '~/components/AccountItem'
 import styles from './Search.module.scss'
 import { ClearSearchValueIcon, SearchIcon } from '~/components/Icons'
+import { useDebounce } from '~/components/hooks'
 
 const cx = classNames.bind(styles)
 
@@ -15,6 +16,8 @@ function Search() {
   const [searchResult, setSearchResult] = useState([])
   const [showResult, setShowResult] = useState(true)
   const [loading, setLoading] = useState(false)
+
+  const debounce = useDebounce(searchValue, 700)
 
   const searchInputEl = useRef()
 
@@ -29,14 +32,14 @@ function Search() {
   }
 
   useEffect(() => {
-    if (!searchValue.trim()) {
+    if (!debounce.trim()) {
       setSearchResult([])
       return
     }
 
     setLoading(true)
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
       .then((res) => res.json())
       .then((res) => {
         setSearchResult(res.data)
@@ -45,7 +48,7 @@ function Search() {
       .catch(() => {
         setLoading(false)
       })
-  }, [searchValue])
+  }, [debounce])
 
   return (
     <div>

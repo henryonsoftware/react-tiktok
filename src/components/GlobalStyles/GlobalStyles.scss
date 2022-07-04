@@ -9,6 +9,8 @@
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
   --default-layout-horizontal-spacer: 24px;
+
+  --font-family: 'ProximaNova', sans-serif;
 }
 
 * {
@@ -18,7 +20,7 @@
 }
 
 body {
-  font-family: 'ProximaNova', sans-serif;
+  font-family: var(--font-family);
   font-size: 14px;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
@@ -69,6 +71,7 @@ body {
     background-color: rgba(84, 84, 84, 0.92);
     text-decoration: none;
     border-radius: 8px;
+    font-size: 16px;
     font-weight: 600;
     line-height: 22px;
     padding: 8px;

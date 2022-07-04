@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom'
 import classNames from 'classnames/bind'
 import 'tippy.js/dist/tippy.css'
-import Tippy from '@tippyjs/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faPlus,
@@ -20,6 +20,8 @@ import Menu from '~/components/Layouts/components/Propper/Menu'
 import Image from '~/components/Image'
 import { InboxIcon, MessageIcon } from '~/components/Icons'
 import Search from '../Search'
+import routesConfig from '~/config/route'
+import Tippy from '@tippyjs/react'
 
 const cx = classNames.bind(styles)
 
@@ -98,9 +100,9 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <div className={cx('logo')}>
+        <Link to={routesConfig.home} className={cx('logo')}>
           <img src={images.logo} />
-        </div>
+        </Link>
 
         <Search />
 
@@ -108,18 +110,18 @@ function Header() {
         <div className={cx('actions')}>
           {currentUser ? (
             <>
-              <Tippy content="Upload video" placement="bottom" delay={200}>
-                <>
-                  <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-                    Upload
-                  </Button>
-                  <button className={cx('action-btn')}>
-                    <MessageIcon classNames="tiktok-9oofjg-StyledIcon e1nx07zo1" />
-                  </button>
-                  <button className={cx('action-btn')}>
-                    <InboxIcon classNames="tiktok-1g0p6jv-StyledInboxIcon e18kkhh41" />
-                  </button>
-                </>
+              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                Upload
+              </Button>
+              <Tippy content="Message">
+                <button className={cx('action-btn')}>
+                  <MessageIcon classNames="tiktok-9oofjg-StyledIcon e1nx07zo1" />
+                </button>
+              </Tippy>
+              <Tippy content="Inbox">
+                <button className={cx('action-btn')}>
+                  <InboxIcon classNames="tiktok-1g0p6jv-StyledInboxIcon e18kkhh41" />
+                </button>
               </Tippy>
             </>
           ) : (

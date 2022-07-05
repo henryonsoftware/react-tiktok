@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import styles from './Button.module.scss'
 
 const cx = classNames.bind(styles)
@@ -65,6 +66,24 @@ function Button({
       {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
     </Comp>
   )
+}
+
+Button.propTypes = {
+  to: PropTypes.string,
+  href: PropTypes.string,
+  className: PropTypes.string,
+  primaryBtn: PropTypes.bool,
+  outlineBtn: PropTypes.bool,
+  textBtn: PropTypes.bool,
+  roundedBtn: PropTypes.bool,
+  disabledBtn: PropTypes.bool,
+  smallSizeBtn: PropTypes.bool,
+  mediumSizeBtn: PropTypes.bool,
+  largeSizeBtn: PropTypes.bool,
+  leftIcon: PropTypes.node,
+  rightIcon: PropTypes.node,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 }
 
 export default Button

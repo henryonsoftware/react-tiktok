@@ -13,10 +13,10 @@ const defaultFn = () => {}
 
 function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
   const [history, setHistory] = useState([{ data: items }])
-  const current = history[history.length - 1]
+  const currentMenu = history[history.length - 1]
 
   const renderItems = () => {
-    return current.data.map((item, index) => {
+    return currentMenu.data.map((item, index) => {
       const isParent = !!item.children
       return (
         <MenuItem
@@ -34,6 +34,9 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     })
   }
 
+  // Reset to first page
+  const handleResetMenu = () => setHistory((prev) => prev.slice(0, 1))
+
   return (
     <Tippy
       hideOnClick={hideOnClick}
@@ -46,7 +49,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
           <PropperWrapper className={cx('menu-popper')}>
             {history.length > 1 && (
               <Header
-                title={current.title}
+                title={currentMenu.title}
                 onBack={() => {
                   setHistory((prev) => prev.slice(0, prev.length - 1))
                 }}
@@ -56,7 +59,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
           </PropperWrapper>
         </div>
       )}
-      onHide={() => setHistory((prev) => prev.slice(0, 1))}
+      onHide={handleResetMenu}
     >
       {children}
     </Tippy>

@@ -1,11 +1,11 @@
 import routesConfig from '~/config/route'
-import { HeaderOnly } from '~/components/Layouts'
+import { HeaderOnly } from '~/layouts'
 
 import HomePage from '~/pages/Home'
 import FollowingPage from '~/pages/Following'
 import ProfilePage from '~/pages/Profile'
 import UploadPage from '~/pages/Upload'
-import Search from '~/components/Layouts/components/Search'
+import Search from '~/layouts/components/Search'
 
 const publicRoutes = [
   { path: routesConfig.home, component: HomePage },

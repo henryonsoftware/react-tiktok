@@ -16,7 +16,7 @@ import {
 import styles from './Header.module.scss'
 import images from '~/assets/images'
 import Button from '~/components/Button'
-import Menu from '~/components/Layouts/components/Propper/Menu'
+import Menu from '~/layouts/components/Propper/Menu'
 import Image from '~/components/Image'
 import { InboxIcon, MessageIcon } from '~/components/Icons'
 import Search from '../Search'

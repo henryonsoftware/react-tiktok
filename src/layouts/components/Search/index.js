@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 import * as searchService from '~/services/searchService'
-import { Wrapper as PropperWrapper } from '~/components/Layouts/components/Propper'
+import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import AccountItem from '~/components/AccountItem'
 import styles from './Search.module.scss'
 import { ClearSearchValueIcon, SearchIcon } from '~/components/Icons'

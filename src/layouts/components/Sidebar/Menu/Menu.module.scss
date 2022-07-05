@@ -1,0 +1,49 @@
+.menu {
+  margin-bottom: 8px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  color: rgba(22, 24, 35, 1);
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.03);
+    transition: background ease-in-out 200ms;
+    -webkit-transition: background ease-in-out 200ms;
+    border-radius: 4px;
+  }
+
+  &.active {
+    color: var(--primary);
+
+    .icon {
+      display: none;
+    }
+
+    .active-icon {
+      display: flex;
+    }
+  }
+
+  &.active > title {
+    color: var(--primary);
+  }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  margin-left: 8px;
+}
+
+.icon,
+.active-icon {
+  display: flex;
+}
+
+.active-icon {
+  display: none;
+}

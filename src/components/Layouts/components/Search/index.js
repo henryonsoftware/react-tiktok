@@ -4,7 +4,7 @@ import HeadlessTippy from '@tippyjs/react/headless'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-import * as searchService from '~/apiServices/searchService'
+import * as searchService from '~/services/searchService'
 import { Wrapper as PropperWrapper } from '~/components/Layouts/components/Propper'
 import AccountItem from '~/components/AccountItem'
 import styles from './Search.module.scss'

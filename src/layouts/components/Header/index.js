@@ -20,7 +20,7 @@ import Menu from '~/layouts/components/Propper/Menu'
 import Image from '~/components/Image'
 import { InboxIcon, MessageIcon } from '~/components/Icons'
 import Search from '../Search'
-import routesConfig from '~/config/route'
+import config from '~/config'
 import Tippy from '@tippyjs/react'
 
 const cx = classNames.bind(styles)
@@ -100,7 +100,7 @@ function Header() {
   return (
     <header className={cx('wrapper')}>
       <div className={cx('inner')}>
-        <Link to={routesConfig.home} className={cx('logo')}>
+        <Link to={config.routes.home} className={cx('logo')}>
           <img src={images.logo} />
         </Link>
 

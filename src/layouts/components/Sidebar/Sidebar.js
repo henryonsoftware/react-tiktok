@@ -10,6 +10,7 @@ import {
   CameraIcon,
   CameraActiveIcon,
 } from '~/components/Icons'
+import SidebarAccounts from '~/components/SidebarAccounts'
 
 const cx = classNames.bind(styles)
 
@@ -26,6 +27,8 @@ function Sidebar() {
         />
         <MenuItem title="Live" to={config.routes.live} icon={<CameraIcon />} activeIcon={<CameraActiveIcon />} />
       </Menu>
+      <SidebarAccounts label="Suggested accounts" moreLabel="See all" />
+      <SidebarAccounts label="Following accounts" moreLabel="See more" />
     </aside>
   )
 }

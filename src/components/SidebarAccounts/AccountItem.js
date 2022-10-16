@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -9,12 +10,12 @@ import AccountPreview from './AccountPreview'
 
 const cx = classNames.bind(styles)
 
-function AccountItem() {
+function AccountItem({ data }) {
   const preview = () => {
     return (
       <div tabIndex="-1">
         <PropperWrapper>
-          <AccountPreview />
+          <AccountPreview data={data} />
         </PropperWrapper>
       </div>
     )
@@ -22,22 +23,26 @@ function AccountItem() {
 
   return (
     <div>
-      <Tippy interactive delay={[800, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
-        <Link to="/@henrybui_io">
+      <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
+        <Link to={`/@${data.nickname}`}>
           <div className={cx('accountItem')}>
-            <img src="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg" alt="Avatar" />
+            <img src={data.avatar} alt={data.nickname} />
             <div className={cx('itemInfo')}>
               <h4 className={cx('username')}>
-                <span>henrybui_io</span>
-                <FontAwesomeIcon className={cx('verifyBadge')} icon={faCircleCheck}></FontAwesomeIcon>
+                <span>{data.nickname}</span>
+                {data.tick && <FontAwesomeIcon className={cx('verifyBadge')} icon={faCircleCheck}></FontAwesomeIcon>}
               </h4>
-              <p className={cx('fullname')}>Bui Viet Huong</p>
+              <p className={cx('fullname')}>{`${data.first_name} ${data.last_name}`}</p>
             </div>
           </div>
         </Link>
       </Tippy>
     </div>
   )
+}
+
+AccountItem.propTypes = {
+  data: PropTypes.object.isRequired,
 }
 
 export default AccountItem

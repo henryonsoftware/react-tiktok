@@ -24,15 +24,26 @@ function Sidebar() {
   const [page, setPage] = useState(INIT_PAGE)
   const [suggestedUsers, setSuggestedUsers] = useState([])
 
+  const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE)
+  const [followingUsers, setFollowingUsers] = useState([])
+
   useEffect(() => {
-    userService
-      .getSuggestedUsers({ page, perPage: PER_PAGE })
-      .then((data) => {
-        setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    // userService
+    //   .getSuggestedUsers({ page, perPage: PER_PAGE })
+    //   .then((data) => {
+    //     setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    // userService
+    //   .getFollowingUsers(followingUsersPage)
+    //   .then((data) => {
+    //     setFollowingUsersPage((prev) => [...prev, ...data])
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
   }, [])
 
   return (
@@ -48,7 +59,7 @@ function Sidebar() {
         <MenuItem title="Live" to={config.routes.live} icon={<CameraIcon />} activeIcon={<CameraActiveIcon />} />
       </Menu>
       <SidebarAccounts label="Suggested accounts" moreLabel="See all" data={suggestedUsers} />
-      <SidebarAccounts label="Following accounts" moreLabel="See more" />
+      <SidebarAccounts label="Following accounts" moreLabel="See more" data={followingUsers} />
     </aside>
   )
 }

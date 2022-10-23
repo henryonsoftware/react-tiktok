@@ -10,4 +10,9 @@ export const get = async (uri, options = {}) => {
   return response.data
 }
 
+export const post = async (uri, options = {}) => {
+  const response = await httpRequest.post(uri, options)
+  return response.data
+}
+
 export default httpRequest

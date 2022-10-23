@@ -95,7 +95,7 @@ function Header() {
     },
   ]
 
-  const currentUser = false
+  const currentUser = JSON.parse(localStorage.getItem('user'))
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [children, setChildren] = useState(<Login />)
   const [navigateBack, setNavigateBack] = useState(null)
@@ -211,10 +211,10 @@ function Header() {
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
               <Image
-                className={cx('avatar')}
-                src="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
-                alt="User avatar"
-                fallback="https://static.fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png"
+                className="ml-4 h-8 w-8 object-cover rounded-full cursor-pointer"
+                src={currentUser.data.avatar}
+                alt={currentUser.data.nickname}
+                fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
               />
             ) : (
               <button className={cx('more-btn')}>

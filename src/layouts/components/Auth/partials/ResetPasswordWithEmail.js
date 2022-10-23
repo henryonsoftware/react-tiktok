@@ -59,7 +59,15 @@ function ResetPasswordWithEmail() {
                     placeholder="Password"
                   />
                 </div>
-                <button className={cx('submit-btn')}>Log in</button>
+                <button
+                  className="mt-8 border-none bg-primary text-white text-base leading-5 font-bold font-primary rounded flex items-center justify-center w-full cursor-pointer py-1.5 px-2"
+                  style={{
+                    minWidth: '120px',
+                    minHeight: '46px',
+                  }}
+                >
+                  Log in
+                </button>
               </form>
             </div>
           </div>

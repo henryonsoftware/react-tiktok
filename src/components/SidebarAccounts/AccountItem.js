@@ -12,6 +12,11 @@ const cx = classNames.bind(styles)
 
 function AccountItem({ data }) {
   const preview = () => {
+    // Don't render preview with the account has been followed
+    if (data.is_followed) {
+      return <></>
+    }
+
     return (
       <div tabIndex="-1">
         <PropperWrapper>

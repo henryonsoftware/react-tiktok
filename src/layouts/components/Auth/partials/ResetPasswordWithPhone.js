@@ -41,8 +41,8 @@ function ResetPasswordWithPhone() {
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
+                        fillRule="evenodd"
+                        clipRule="evenodd"
                         d="M25.5187 35.2284C24.7205 36.1596 23.2798 36.1596 22.4816 35.2284L8.83008 19.3016C7.71807 18.0042 8.63988 16 10.3486 16H37.6517C39.3604 16 40.2822 18.0042 39.1702 19.3016L25.5187 35.2284Z"
                       ></path>
                     </svg>
@@ -76,7 +76,15 @@ function ResetPasswordWithPhone() {
                     placeholder="Password"
                   />
                 </div>
-                <button className={cx('submit-btn')}>Log in</button>
+                <button
+                  className="mt-8 border-none bg-primary text-white text-base leading-5 font-bold font-primary rounded flex items-center justify-center w-full cursor-pointer py-1.5 px-2"
+                  style={{
+                    minWidth: '120px',
+                    minHeight: '46px',
+                  }}
+                >
+                  Log in
+                </button>
               </form>
             </div>
           </div>

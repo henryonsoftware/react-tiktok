@@ -27,23 +27,34 @@ function Sidebar() {
   const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE)
   const [followingUsers, setFollowingUsers] = useState([])
 
+  // Get suggested users
   useEffect(() => {
-    // userService
-    //   .getSuggestedUsers({ page, perPage: PER_PAGE })
-    //   .then((data) => {
-    //     setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-    // userService
-    //   .getFollowingUsers(followingUsersPage)
-    //   .then((data) => {
-    //     setFollowingUsersPage((prev) => [...prev, ...data])
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
+    userService
+      .getSuggestedUsers({ page, perPage: PER_PAGE })
+      .then((data) => {
+        setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
+  // Get following users
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('user'))
+
+    if (currentUser && currentUser.meta.token) {
+      userService
+        .getFollowingUsers(followingUsersPage, currentUser.meta.token)
+        .then((data) => {
+          setFollowingUsers((prev) => [...prev, ...data])
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } else {
+      setFollowingUsers([])
+    }
   }, [])
 
   return (

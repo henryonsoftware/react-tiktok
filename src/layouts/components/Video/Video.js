@@ -23,12 +23,14 @@ function Video({ video }) {
   return (
     <div className="flex items-start py-5 border-b border-solid border-black/10" style={{ maxWidth: '692px' }}>
       <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
-        <a className="" href="#">
-          <img
-            className="rounded-full w-14 h-14 object-cover overflow-hidden"
-            src={video.user.avatar}
-            alt={video.user.nickname}
-          />
+        <a href={`@${video.user.nickname}`}>
+          <div className="w-14 h-14">
+            <img
+              className="rounded-full w-14 h-14 object-fit overflow-hidden"
+              src={video.user.avatar}
+              alt={video.user.nickname}
+            />
+          </div>
         </a>
       </Tippy>
       <div className="w-full ml-4">

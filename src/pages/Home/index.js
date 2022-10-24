@@ -13,7 +13,9 @@ function HomePage() {
     timelineService
       .getVideos('for-you', page)
       .then((res) => {
-        setVideos((prev) => [...prev, ...res.data])
+        if (Array.isArray(res.data)) {
+          setVideos((prev) => [...prev, ...res.data])
+        }
 
         if (res.data.length === 0 || page === res.meta.pagination.total) {
           setNoMoreVideo(true)

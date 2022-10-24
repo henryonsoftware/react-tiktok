@@ -1,18 +1,14 @@
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
-import styles from './DefaultLayout.module.scss'
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 
-const cx = classNames.bind(styles)
-
 function DefaultLayout({ children }) {
   return (
-    <div className={cx('wrapper')}>
+    <div className="flex flex-col items-center">
       <Header />
-      <div className={cx('container')}>
+      <div className="max-w-full flex justify-between py-0 px-6 mt-16" style={{ width: '1150px' }}>
         <Sidebar />
-        <div className={cx('content')}>{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   )

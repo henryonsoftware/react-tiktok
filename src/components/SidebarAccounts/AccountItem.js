@@ -31,7 +31,14 @@ function AccountItem({ data }) {
       <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
         <Link to={`/@${data.nickname}`}>
           <div className={cx('accountItem')}>
-            <img src={data.avatar} alt={data.nickname} />
+            <img
+              src={data.avatar}
+              alt={data.nickname}
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null
+                currentTarget.src = 'https://avatars.dicebear.com/api/micah/henrybui_io.svg'
+              }}
+            />
             <div className={cx('itemInfo')}>
               <h4 className={cx('username')}>
                 <span>{data.nickname}</span>

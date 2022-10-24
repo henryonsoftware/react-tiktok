@@ -32,7 +32,9 @@ function Sidebar() {
     userService
       .getSuggestedUsers({ page, perPage: PER_PAGE })
       .then((data) => {
-        setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
+        if (Array.isArray(data)) {
+          setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
+        }
       })
       .catch((error) => {
         console.log(error)
@@ -47,7 +49,9 @@ function Sidebar() {
       userService
         .getFollowingUsers(followingUsersPage, currentUser.meta.token)
         .then((data) => {
-          setFollowingUsers((prev) => [...prev, ...data])
+          if (Array.isArray(data)) {
+            setFollowingUsers((prev) => [...prev, ...data])
+          }
         })
         .catch((error) => {
           console.log(error)

@@ -97,7 +97,11 @@ function Search() {
 
           {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
-          <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+          <button
+            className="flex items-center justify-center w-14 h-full bg-transparent hover:bg-black/5 hover:cursor-pointer text-xl text-black/30 "
+            style={{ borderTopRightRadius: '92px', borderBottomRightRadius: '92px' }}
+            onMouseDown={(e) => e.preventDefault()}
+          >
             <SearchIcon />
           </button>
         </div>

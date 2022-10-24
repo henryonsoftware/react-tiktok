@@ -31,7 +31,7 @@
     content: '';
     position: absolute;
     top: var(--search-top-spacer);
-    right: 52px;
+    right: 55px;
     height: calc(var(--search-height) - var(--search-top-spacer) * 2);
     background-color: rgba(22, 24, 35, 0.12);
     width: 1px;
@@ -51,26 +51,10 @@
   color: rgba(22, 24, 35, 0.5);
 }
 
-.search-btn {
-  width: 52px;
-  height: 100%;
-  background-color: transparent;
-  border-top-right-radius: var(--search-border-radius);
-  border-bottom-right-radius: var(--search-border-radius);
-  font-size: 1.2rem;
-  color: rgba(22, 24, 35, 0.34);
-
-  &:hover,
-  &:active {
-    background-color: rgba(22, 24, 35, 0.03);
-    cursor: pointer;
-  }
-}
-
 .clear,
 .loading {
   position: absolute;
-  right: 65px;
+  right: 67px;
   top: 50%;
   transform: translateY(-50%);
   color: rgba(22, 24, 35, 0.34);

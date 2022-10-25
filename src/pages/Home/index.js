@@ -27,7 +27,7 @@ function HomePage() {
   }, [page])
 
   return (
-    <div className="mx-4 py-8" style={{ width: '692px' }}>
+    <div className="mx-4 py-8">
       {videos.map((video) => (
         <Video key={video.id} video={video} />
       ))}

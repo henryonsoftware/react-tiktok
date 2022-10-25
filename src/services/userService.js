@@ -1,6 +1,6 @@
 import * as httpRequest from '~/utils/httpRequest'
 
-export const getSuggestedUsers = async (page, perPage) => {
+export const getSuggestedUsers = async ({ page, perPage }) => {
   try {
     const res = await httpRequest.get('users/suggested', {
       params: {
@@ -15,7 +15,7 @@ export const getSuggestedUsers = async (page, perPage) => {
   }
 }
 
-export const getFollowingUsers = async (page, accessToken) => {
+export const getFollowingUsers = async ({ page, accessToken }) => {
   try {
     const res = await httpRequest.get('me/followings', {
       headers: {

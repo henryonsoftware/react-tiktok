@@ -1,14 +1,10 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
 import Tippy from '@tippyjs/react/headless'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
-import styles from './SidebarAccounts.module.scss'
 import AccountPreview from './AccountPreview'
-
-const cx = classNames.bind(styles)
 
 function AccountItem({ data }) {
   const preview = () => {
@@ -28,10 +24,11 @@ function AccountItem({ data }) {
 
   return (
     <div>
-      <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
+      <Tippy interactive delay={[100, 100]} offset={[15, 5]} render={preview} placement="bottom-start">
         <Link to={`/@${data.nickname}`}>
-          <div className={cx('accountItem')}>
+          <div className="flex items-center p-2 cursor-pointer rounded hover:bg-black/5">
             <img
+              className="w-8 h-8 rounded-full object-cover mr-3"
               src={data.avatar}
               alt={data.nickname}
               onError={({ currentTarget }) => {
@@ -39,12 +36,12 @@ function AccountItem({ data }) {
                 currentTarget.src = 'https://avatars.dicebear.com/api/micah/henrybui_io.svg'
               }}
             />
-            <div className={cx('itemInfo')}>
-              <h4 className={cx('username')}>
+            <div className="hidden md:block">
+              <h4 className="flex items-center font-secondary text-base font-semibold overflow-hidden text-ellipsis whitespace-nowrap">
                 <span>{data.nickname}</span>
-                {data.tick && <FontAwesomeIcon className={cx('verifyBadge')} icon={faCircleCheck}></FontAwesomeIcon>}
+                {data.tick && <FontAwesomeIcon className="ml-1 text-badge-blue" icon={faCircleCheck}></FontAwesomeIcon>}
               </h4>
-              <p className={cx('fullname')}>{`${data.first_name} ${data.last_name}`}</p>
+              <p className="font-primary text-sm font-normal overflow-hidden text-ellipsis text-black/60">{`${data.first_name} ${data.last_name}`}</p>
             </div>
           </div>
         </Link>

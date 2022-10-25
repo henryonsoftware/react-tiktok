@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import classNames from 'classnames/bind'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu'
-import styles from './Sidebar.module.scss'
 import {
   HomeIcon,
   HomeActiveIcon,
@@ -15,15 +13,12 @@ import SidebarAccounts from '~/components/SidebarAccounts'
 import * as userService from '~/services/userService'
 import { useEffect } from 'react'
 
-const cx = classNames.bind(styles)
-
 const INIT_PAGE = 1
 const PER_PAGE = 5
 
 function Sidebar() {
   const [page, setPage] = useState(INIT_PAGE)
   const [suggestedUsers, setSuggestedUsers] = useState([])
-
   const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE)
   const [followingUsers, setFollowingUsers] = useState([])
 
@@ -47,7 +42,7 @@ function Sidebar() {
 
     if (currentUser && currentUser.meta.token) {
       userService
-        .getFollowingUsers(followingUsersPage, currentUser.meta.token)
+        .getFollowingUsers({ page: followingUsersPage, accessToken: currentUser.meta.token })
         .then((data) => {
           if (Array.isArray(data)) {
             setFollowingUsers((prev) => [...prev, ...data])
@@ -62,7 +57,7 @@ function Sidebar() {
   }, [])
 
   return (
-    <aside className={cx('wrapper')}>
+    <aside className="h-full z-50 bg-white overflow-x-hidden md:overflow-y-scroll px-2 md:px-0 pt-5 pb-6 border-r border-solid border-black/10 md:border-none">
       <Menu>
         <MenuItem title="For You" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
         <MenuItem

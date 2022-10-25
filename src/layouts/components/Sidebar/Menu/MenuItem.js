@@ -10,7 +10,7 @@ function MenuItem({ title, to, icon, activeIcon }) {
     <NavLink to={to} className={(navData) => cx('menu-item', { active: navData.isActive })}>
       <span className={cx('icon')}>{icon}</span>
       <span className={cx('active-icon')}>{activeIcon}</span>
-      <h2 className={cx('title')}>{title}</h2>
+      <h2 className="hidden md:block text-lg font-bold ml-2">{title}</h2>
     </NavLink>
   )
 }

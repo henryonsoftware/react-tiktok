@@ -3,7 +3,6 @@ import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-
 import * as searchService from '~/services/searchService'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import AccountItem from '~/components/AccountItem'
@@ -63,7 +62,7 @@ function Search() {
   return (
     // Interactive tippy element may not be accessible via keyboard navigation because it is not directly after the reference element in the DOM source order.
     // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
-    <div>
+    <div className="hidden md:block">
       <HeadlessTippy
         interactive
         visible={showResult && searchResult.length > 0}

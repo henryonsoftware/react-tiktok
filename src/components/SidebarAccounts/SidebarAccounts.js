@@ -1,21 +1,16 @@
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
-import styles from './SidebarAccounts.module.scss'
 import AccountItem from './AccountItem'
-
-const cx = classNames.bind(styles)
-
 function SidebarAccounts({ label, moreLabel, data = [] }) {
   return (
-    <div className={cx('wrapper')}>
-      <p className={cx('label')}>{label}</p>
+    <div className="py-4">
+      <p className="hidden md:block py-0 px-2 text-sm font-primary text-black/60">{label}</p>
 
       {data.map((account) => (
         <AccountItem key={account.id} data={account} />
       ))}
 
-      <div className={cx('seeAll')}>
-        <p>{moreLabel}</p>
+      <div className="hidden md:flex flex-row items-center py-0 px-2 mt-2 text-primary cursor-pointer hover:underline">
+        {moreLabel}
       </div>
     </div>
   )

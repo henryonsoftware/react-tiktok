@@ -57,7 +57,7 @@ function Sidebar() {
   }, [])
 
   return (
-    <aside className="h-full z-50 bg-white overflow-x-hidden md:overflow-y-scroll px-2 md:px-0 pt-5 pb-6 border-r border-solid border-black/10 md:border-none">
+    <aside className="fixed top-16 md:w-80 bottom-0 z-50 bg-white overflow-y-hidden md:overflow-y-scroll px-2 md:px-0 py-2 md:py-5 border-r border-solid border-black/10 md:border-none">
       <Menu>
         <MenuItem title="For You" to={config.routes.home} icon={<HomeIcon />} activeIcon={<HomeActiveIcon />} />
         <MenuItem

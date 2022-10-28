@@ -187,7 +187,7 @@ function Header() {
             </>
           ) : (
             <>
-              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} className="hidden md:inline-block" />}>
                 Upload
               </Button>
               <Button primaryBtn to="/" onClick={() => setShowAuthModal(true)}>

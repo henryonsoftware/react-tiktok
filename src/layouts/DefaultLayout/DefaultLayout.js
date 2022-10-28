@@ -7,10 +7,10 @@ function DefaultLayout({ children }) {
     <div className="flex flex-col items-center">
       <Header />
       <div className="max-w-full flex justify-between py-0 px-0 md:px-6 mt-16" style={{ width: '1150px' }}>
-        <div className="md:w-1/4">
+        <div>
           <Sidebar />
         </div>
-        <div className="md:w-3/4 md:pl-20 bg-white">{children}</div>
+        <div className="ml-16 md:ml-96 md:w-3/4">{children}</div>
       </div>
     </div>
   )

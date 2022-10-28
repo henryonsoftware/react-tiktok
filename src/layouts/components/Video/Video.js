@@ -26,7 +26,8 @@ function Video({ video }) {
         <a href={`@${video.user.nickname}`} className="hidden sm:block">
           <div className="w-10 h-10 md:w-14 md:h-14">
             <img
-              className="rounded-full w-10 h-10 md:w-14 md:h-14 object-fit overflow-hidden"
+              className="rounded-full object-cover overflow-hidden"
+              style={{ width: 'inherit', height: 'inherit' }}
               src={video.user.avatar}
               alt={video.user.nickname}
             />
@@ -35,7 +36,7 @@ function Video({ video }) {
       </Tippy>
       <div className="w-full ml-0 sm:ml-4">
         <div className="relative">
-          <div className="flex items-center mb-1">
+          <div className="flex items-center mb-1 mr-24">
             <a href={`/@${video.user.nickname}`}>
               <h3 className="hover:underline block md:inline-block text-base font-bold mr-2">{`${video.user.first_name} ${video.user.last_name}`}</h3>
               {video.user.tick && (
@@ -47,7 +48,7 @@ function Video({ video }) {
           <button className="absolute right-0 top-2 rounded-sm border border-solid border-primary bg-white hover:bg-secondary text-primary text-base font-semibold text-center px-4 sm:px-6 py-0 sm:py-0.5">
             Follow
           </button>
-          <div className="text-base mb-2">
+          <div className="text-base mb-2 mr-24">
             <span>{video.description}</span>
             <a className="font-bold mx-1 hover:underline" href="#">
               #พ่อบ้านใจกล้า

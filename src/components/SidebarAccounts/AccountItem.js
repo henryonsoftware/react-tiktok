@@ -24,11 +24,11 @@ function AccountItem({ data }) {
 
   return (
     <div>
-      <Tippy interactive delay={[100, 100]} offset={[15, 5]} render={preview} placement="bottom-start">
+      <Tippy interactive delay={[200, 100]} offset={[0, 2]} render={preview} placement="bottom-start">
         <Link to={`/@${data.nickname}`}>
           <div className="flex items-center p-2 cursor-pointer rounded hover:bg-black/5">
             <img
-              className="w-8 h-8 rounded-full object-cover mr-3"
+              className="w-8 h-8 rounded-full object-cover m-0 md:mr-3"
               src={data.avatar}
               alt={data.nickname}
               onError={({ currentTarget }) => {

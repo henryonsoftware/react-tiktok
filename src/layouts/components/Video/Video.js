@@ -102,6 +102,7 @@ function Video({ video }) {
                 controls
                 loop={true}
                 autoPlay
+                playsInline
                 muted
                 poster={video.thumb_url}
               >

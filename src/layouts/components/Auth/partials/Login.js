@@ -15,7 +15,7 @@ import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
 function Login() {
   const buttons = [
     {
-      href: '/login/qrcode',
+      href: '',
       icon: <QRCodeIcon width={20} height={20} />,
       text: 'Use QR code',
     },
@@ -62,7 +62,7 @@ function Login() {
           key={key}
           onClick={(event) => {
             event.preventDefault()
-            value.handleModalBodyName('login-with-phone')
+            value.handleModalBodyName('login-with-email')
           }}
         >
           <div className="font-primary font-semibold text-sm border border-solid border-black/10 text-black/80 py-0 px-3 flex items-center justify-center h-11 relative cursor-pointer mb-4 break-keep space-nowrap bg-white">

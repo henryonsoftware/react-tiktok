@@ -139,7 +139,7 @@ function Header() {
         break
       case 'login-with-phone':
         setChildren(<PhoneAndCodeLoginForm />)
-        setNavigateBack('login')
+        setNavigateBack('login-with-email')
         break
       case 'login-with-phone-and-password':
         setChildren(<PhoneAndPasswordLoginForm />)
@@ -147,7 +147,7 @@ function Header() {
         break
       case 'login-with-email':
         setChildren(<EmailAndPasswordLoginForm />)
-        setNavigateBack('login-with-phone')
+        setNavigateBack('login')
         break
       case 'reset-password-with-phone':
         setChildren(<ResetPasswordWithPhone />)

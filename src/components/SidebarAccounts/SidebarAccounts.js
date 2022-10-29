@@ -2,8 +2,8 @@ import PropTypes from 'prop-types'
 import AccountItem from './AccountItem'
 function SidebarAccounts({ label, moreLabel, data = [] }) {
   return (
-    <div className="py-4">
-      <p className="hidden md:block py-0 px-2 text-sm font-primary text-black/60">{label}</p>
+    <div className="py-4 relative before:content-[''] before:absolute before:left-2 before:right-2 before:top-0 before:h-px before:bg-black/10 before:scale-y-50">
+      <p className="hidden md:block py-0 px-2 text-sm font-primary text-black/70">{label}</p>
 
       {data.map((account) => (
         <AccountItem key={account.id} data={account} />

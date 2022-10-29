@@ -14,7 +14,7 @@ function AccountItem({ data }) {
     }
 
     return (
-      <div tabIndex="-1">
+      <div className="hidden lg:block" tabIndex="-1">
         <PropperWrapper>
           <AccountPreview data={data} />
         </PropperWrapper>

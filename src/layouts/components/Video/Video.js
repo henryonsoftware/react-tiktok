@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots, faShare, faMusic, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import AccountPreview from '~/components/SidebarAccounts/AccountPreview'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
+import { useState, useEffect } from 'react'
 
 function Video({ video }) {
   const preview = () => {
@@ -19,6 +20,26 @@ function Video({ video }) {
       </div>
     )
   }
+
+  const [description, setDescription] = useState('')
+  const [tags, setTags] = useState([])
+
+  useEffect(() => {
+    const videoDesc = video.description
+
+    if (videoDesc.includes('#')) {
+      const explodedDesc = videoDesc.split('#')
+
+      setDescription(explodedDesc[0])
+
+      // Remove first item, it is description
+      explodedDesc.shift()
+
+      setTags(explodedDesc)
+    } else {
+      setDescription(videoDesc)
+    }
+  }, [])
 
   return (
     <div className="flex items-start py-5 border-b border-solid border-black/10" style={{ maxWidth: '692px' }}>
@@ -49,13 +70,12 @@ function Video({ video }) {
             Follow
           </button>
           <div className="text-base mb-2 mr-24">
-            <span>{video.description}</span>
-            <a className="font-bold mx-1 hover:underline" href="#">
-              #พ่อบ้านใจกล้า
-            </a>
-            <a className="font-bold mx-1 hover:underline" href="#">
-              #yamamotohouse
-            </a>
+            {description}
+            {tags.map((tag, key) => (
+              <a key={key} href={`/tag/${tag}`} className="font-bold mx-1 hover:underline">
+                #{tag}
+              </a>
+            ))}
           </div>
 
           {video.music && (

@@ -1,15 +1,20 @@
-import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
-import styles from './Menu.module.scss'
-
-const cx = classNames.bind(styles)
 
 function MenuItem({ title, to, icon, activeIcon }) {
   return (
-    <NavLink to={to} className={(navData) => cx('menu-item', { active: navData.isActive })}>
-      <span className={cx('icon')}>{icon}</span>
-      <span className={cx('active-icon')}>{activeIcon}</span>
+    <NavLink
+      to={to}
+      className={(nav) => {
+        if (nav.isActive) {
+          return 'flex items-center p-2 hover:bg-black/5 rounded text-primary'
+        } else {
+          return 'flex items-center p-2 hover:bg-black/5 rounded'
+        }
+      }}
+    >
+      <span className="flex">{icon}</span>
+      <span className="hidden">{activeIcon}</span>
       <h2 className="hidden md:block text-lg font-bold ml-2">{title}</h2>
     </NavLink>
   )

@@ -1,10 +1,6 @@
 import { useContext } from 'react'
-import classNames from 'classnames/bind'
-import styles from '~/layouts/components/Auth/AuthModal.module.scss'
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
 import { PeopleIcon, FacebookIcon, GoogleIcon, LineIcon, KakaoTalkIcon, TwitterIcon } from '~/components/Icons'
-
-const cx = classNames.bind(styles)
 
 function SignUp() {
   const buttons = [
@@ -41,15 +37,15 @@ function SignUp() {
     return buttons.map((button, key) => {
       return button.href ? (
         <a href={button.href} key={key}>
-          <div className={cx('channel-item')}>
-            <div className={cx('icon')}>{button.icon}</div>
+          <div className="font-primary font-semibold text-sm border border-solid border-black/10 text-black/80 py-0 px-3 flex items-center justify-center h-11 relative cursor-pointer mb-4 break-keep space-nowrap bg-white">
+            <div className="flex absolute text-lg left-3">{button.icon}</div>
             {button.text}
           </div>
         </a>
       ) : (
         <div>
-          <div className={cx('channel-item')}>
-            <div className={cx('icon')}>{button.icon}</div>
+          <div className="font-primary font-semibold text-sm border border-solid border-black/10 text-black/80 py-0 px-3 flex items-center justify-center h-11 relative cursor-pointer mb-4 break-keep space-nowrap bg-white">
+            <div className="flex absolute text-lg left-3">{button.icon}</div>
             {button.text}
           </div>
         </div>
@@ -66,21 +62,29 @@ function SignUp() {
         </div>
       </div>
 
-      <div className={cx('term-and-condition')}>
-        <p>
+      <div className="w-full flex items-center justify-center bg-white py-4 px-7.5">
+        <p className="font-primary text-black/50 text-xs w-96 text-center">
           By continuing, you agree to TikTok's{' '}
-          <a className={cx('link')} href="https://www.tiktok.com/legal/terms-of-service-row" target="_blank">
+          <a
+            className="text-black/80 hover:underline"
+            href="https://www.tiktok.com/legal/terms-of-service-row"
+            target="_blank"
+          >
             Terms of Service
           </a>{' '}
           and confirm that you have read TikTok's{' '}
-          <a className={cx('link')} href="https://www.tiktok.com/legal/page/row/privacy-policy" target="_blank">
+          <a
+            className="text-black/80 hover:underline"
+            href="https://www.tiktok.com/legal/page/row/privacy-policy"
+            target="_blank"
+          >
             Privacy Policy
           </a>
           .
         </p>
       </div>
 
-      <div className={cx('modal-footer')}>
+      <div className="font-primary flex items-center justify-center text-base h-16 border-t border-solid border-bg-black/40">
         <div>Already have an account?</div>
         <a
           className="hover:underline font-semibold ml-2 text-primary"

@@ -1,9 +1,5 @@
 import { useContext } from 'react'
-import classNames from 'classnames/bind'
-import styles from '../AuthModal.module.scss'
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
-
-const cx = classNames.bind(styles)
 
 function ResetPasswordWithPhone() {
   const value = useContext(ModalBodyNameContext)
@@ -13,8 +9,8 @@ function ResetPasswordWithPhone() {
       <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
         <div className="m-auto" style={{ width: '375px' }}>
           <h3 className="text-center text-4xl font-bold my-4 mx-auto">Reset password</h3>
-          <div className={cx('loginWithPhoneForm')}>
-            <div className={cx('body')}>
+          <div>
+            <div>
               <form>
                 <div className="text-base font-semibold flex justify-between mb-2">
                   <label>Enter phone number</label>

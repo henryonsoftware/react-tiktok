@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types'
 import Tippy from '@tippyjs/react/headless'
-import classNames from 'classnames/bind'
-import styles from './Menu.module.scss'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import MenuItem from './MenuItem'
 import Header from './Header'
 import { useState } from 'react'
-
-const cx = classNames.bind(styles)
 
 const defaultFn = () => {}
 
@@ -45,8 +41,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
       offset={[12, 10]}
       placement="bottom-end"
       render={(attrs) => (
-        <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-          <PropperWrapper className={cx('menu-popper')}>
+        <div className="justify-start" style={{ width: '224px' }} tabIndex="-1" {...attrs}>
+          <PropperWrapper className="pb-2">
             {history.length > 1 && (
               <Header
                 title={currentMenu.title}
@@ -55,7 +51,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                 }}
               />
             )}
-            <div className={cx('menu-body')}>{renderItems()}</div>
+            <div className="overflow-auto">{renderItems()}</div>
           </PropperWrapper>
         </div>
       )}

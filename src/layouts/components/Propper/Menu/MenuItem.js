@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types'
 import Button from '~/components/Button'
-import classNames from 'classnames/bind'
-import styles from './Menu.module.scss'
-
-const cx = classNames.bind(styles)
 
 function MenuItem({ data, onClick }) {
-  const classes = cx('menu-item', { separate: data.separate })
-
   return (
-    <Button className={classes} leftIcon={data.icon} onClick={onClick}>
+    <Button
+      classes="text-left text-base font-primary py-2 px-4 cursor-pointer py-2.5 py-4 w-full hover:bg-black/5"
+      style={{
+        borderTop: data.separate ? 'border-top: 1px solid rgba(22, 24, 35, 0.12)' : '0',
+      }}
+      leftIcon={data.icon}
+      onClick={onClick}
+    >
       {data.title}
     </Button>
   )

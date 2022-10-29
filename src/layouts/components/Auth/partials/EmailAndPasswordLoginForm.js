@@ -1,10 +1,6 @@
 import { useContext, useState } from 'react'
-import classNames from 'classnames/bind'
-import styles from '../AuthModal.module.scss'
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
 import * as authService from '~/services/authService'
-
-const cx = classNames.bind(styles)
 
 function EmailAndPasswordLoginForm() {
   const value = useContext(ModalBodyNameContext)

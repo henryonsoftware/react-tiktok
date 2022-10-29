@@ -1,24 +1,24 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
-import classNames from 'classnames/bind'
 import PropTypes from 'prop-types'
-
-import styles from './AccountItem.module.scss'
 import Image from '../Image'
-
-const cx = classNames.bind(styles)
 
 function AccountItem({ data }) {
   return (
-    <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
-      <Image src={data.avatar} className={cx('avatar')} alt={data.full_name} />
-      <div className={cx('info')}>
-        <h4 className={cx('username')}>
+    <Link to={`/@${data.nickname}`} className="flex items-center py-2 px-4 cursor-pointer hover:bg-black/5">
+      <Image
+        src={data.avatar}
+        alt={data.full_name}
+        className="w-10 h-10 rounded-full object-cover mr-3"
+        fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
+      />
+      <div className="flex-1">
+        <h4 className="text-base font-semibold overflow-hidden text-ellipsis whitespace-nowrap text-black/80">
           <span>{data.nickname}</span>{' '}
-          {data.tick && <FontAwesomeIcon className={cx('verifyBadge')} icon={faCircleCheck}></FontAwesomeIcon>}
+          {data.tick && <FontAwesomeIcon className="mx-1 text-sky-400" icon={faCircleCheck}></FontAwesomeIcon>}
         </h4>
-        <p className={cx('fullname')}>{data.full_name}</p>
+        <p className="text-sm overflow-hidden text-ellipsis text-black/50">{data.full_name}</p>
       </div>
     </Link>
   )

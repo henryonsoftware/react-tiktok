@@ -1,9 +1,5 @@
 import { useContext } from 'react'
-import classNames from 'classnames/bind'
-import styles from '../AuthModal.module.scss'
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
-
-const cx = classNames.bind(styles)
 
 function PhoneAndCodeLoginForm() {
   const value = useContext(ModalBodyNameContext)

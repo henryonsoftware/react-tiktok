@@ -1,16 +1,12 @@
 import { useEffect, useState, useRef } from 'react'
-import classNames from 'classnames/bind'
 import HeadlessTippy from '@tippyjs/react/headless'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import * as searchService from '~/services/searchService'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import AccountItem from '~/components/AccountItem'
-import styles from './Search.module.scss'
 import { ClearSearchValueIcon, SearchIcon } from '~/components/Icons'
 import { useDebounce } from '~/components/hooks'
-
-const cx = classNames.bind(styles)
 
 function Search() {
   const [searchValue, setSearchValue] = useState('')
@@ -67,9 +63,9 @@ function Search() {
         interactive
         visible={showResult && searchResult.length > 0}
         render={(attrs) => (
-          <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+          <div style={{ width: '361px' }} tabIndex="-1" {...attrs}>
             <PropperWrapper>
-              <h4 className={cx('search-title')}>Accounts</h4>
+              <h4 className="h-8 py-1 px-3 text-sm font-semibold text-black/50">Accounts</h4>
               {searchResult.map((result) => (
                 <AccountItem key={result.id} data={result} />
               ))}
@@ -78,8 +74,12 @@ function Search() {
         )}
         onClickOutside={handleShowResult}
       >
-        <div className={cx('search')}>
+        <div
+          className="relative h-12 bg-black/5 rounded-full pl-4 flex border border-solid border-transparent focus-within:border-black/20 after:content-[''] after:absolute after:top-2.5 after:right-14 after:h-6 after:w-px after:bg-black/10"
+          style={{ width: '361px' }}
+        >
           <input
+            className="peer font-primary caret-primary h-full text-black/80 text-base bg-transparent flex-1 pr-10"
             value={searchValue}
             placeholder="Search accounts and videos"
             spellCheck={false}
@@ -89,15 +89,25 @@ function Search() {
           />
 
           {searchValue && !loading && (
-            <button className={cx('clear')} onClick={clearSearchValue}>
+            <button
+              className="absolute top-1/2 -mt-2 text-black/50 text-sm bg-transparent cursor-pointer"
+              style={{ right: '67px' }}
+              onClick={clearSearchValue}
+            >
               <ClearSearchValueIcon />
             </button>
           )}
 
-          {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
+          {loading && (
+            <FontAwesomeIcon
+              className="absolute top-1/2 -mt-2 text-black/50 text-sm bg-transparent cursor-pointer animate-spin w-4 h-4"
+              style={{ right: '67px' }}
+              icon={faSpinner}
+            />
+          )}
 
           <button
-            className="flex items-center justify-center w-14 h-full bg-transparent hover:bg-black/5 hover:cursor-pointer text-xl text-black/30 "
+            className="text-black/60 peer-placeholder-shown:text-black/30 flex items-center justify-center w-14 h-full bg-transparent hover:bg-black/5 hover:cursor-pointer text-xl"
             style={{ borderTopRightRadius: '92px', borderBottomRightRadius: '92px' }}
             onMouseDown={(e) => e.preventDefault()}
           >

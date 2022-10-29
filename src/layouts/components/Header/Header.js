@@ -1,6 +1,5 @@
 import { useEffect, useState, createContext } from 'react'
 import { Link } from 'react-router-dom'
-import classNames from 'classnames/bind'
 import 'tippy.js/dist/tippy.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -14,7 +13,6 @@ import {
   faArrowRightFromBracket,
   faCoins,
 } from '@fortawesome/free-solid-svg-icons'
-import styles from './Header.module.scss'
 import images from '~/assets/images'
 import Button from '~/components/Button'
 import Menu from '~/layouts/components/Propper/Menu'
@@ -31,8 +29,6 @@ import PhoneAndPasswordLoginForm from '~/layouts/components/Auth/partials/PhoneA
 import EmailAndPasswordLoginForm from '~/layouts/components/Auth/partials/EmailAndPasswordLoginForm'
 import ResetPasswordWithPhone from '~/layouts/components/Auth/partials/ResetPasswordWithPhone'
 import ResetPasswordWithEmail from '~/layouts/components/Auth/partials/ResetPasswordWithEmail'
-
-const cx = classNames.bind(styles)
 
 export const ModalBodyNameContext = createContext()
 
@@ -159,38 +155,52 @@ function Header() {
   }, [modalBodyName])
 
   return (
-    <header className={cx('wrapper')}>
-      <div className={cx('inner')}>
-        <Link to={config.routes.home} className={cx('logo')}>
+    <header
+      className="w-full py-2 flex justify-center bg-white z-50 fixed top-0 left-0"
+      style={{ boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.12)' }}
+    >
+      <div className="h-full flex items-center justify-between py-0 px-6" style={{ width: '1150px' }}>
+        <Link to={config.routes.home} className="flex">
           <img src={images.logo} />
         </Link>
 
         <Search />
 
         {/* List actions button */}
-        <div className={cx('actions')}>
+        <div className="flex items-center">
           {currentUser ? (
             <>
-              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+              <Button
+                classes="flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
+                leftIcon={<FontAwesomeIcon icon={faPlus} />}
+              >
                 Upload
               </Button>
               <Tippy content="Message">
-                <button className={cx('action-btn')}>
+                <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <MessageIcon />
                 </button>
               </Tippy>
               <Tippy content="Inbox">
-                <button className={cx('action-btn')}>
+                <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <InboxIcon />
                 </button>
               </Tippy>
             </>
           ) : (
             <>
-              <Button textBtn leftIcon={<FontAwesomeIcon icon={faPlus} className="hidden md:inline-block" />}>
+              <Button
+                classes="flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
+                leftIcon={<FontAwesomeIcon icon={faPlus} className="hidden md:inline-block" />}
+              >
                 Upload
               </Button>
-              <Button primaryBtn to="/" onClick={() => setShowAuthModal(true)}>
+              <Button
+                classes="flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-white bg-primary border border-solid border-primary hover:border-primary"
+                style={{ background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55' }}
+                to="/"
+                onClick={() => setShowAuthModal(true)}
+              >
                 Log in
               </Button>
             </>
@@ -217,7 +227,7 @@ function Header() {
                 fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
               />
             ) : (
-              <button className={cx('more-btn')}>
+              <button className="ml-4 p-2 text-lg bg-transparent cursor-pointer">
                 <FontAwesomeIcon icon={faEllipsisVertical} />
               </button>
             )}

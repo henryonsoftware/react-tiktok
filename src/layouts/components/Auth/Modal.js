@@ -1,12 +1,8 @@
 import { useContext } from 'react'
-import classNames from 'classnames/bind'
-import styles from './AuthModal.module.scss'
 import { CloseButtonIcon } from '~/components/Icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
-
-const cx = classNames.bind(styles)
 
 function Modal({ children, onClose }) {
   const value = useContext(ModalBodyNameContext)

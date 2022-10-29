@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import className from 'classnames/bind'
 import {
   QRCodeIcon,
   PeopleIcon,
@@ -11,10 +10,7 @@ import {
   TwitterIcon,
   AppleIcon,
 } from '~/components/Icons'
-import styles from '~/layouts/components/Auth/AuthModal.module.scss'
 import { ModalBodyNameContext } from '~/layouts/components/Header/Header'
-
-const cx = className.bind(styles)
 
 function Login() {
   const buttons = [
@@ -69,15 +65,15 @@ function Login() {
             value.handleModalBodyName('login-with-phone')
           }}
         >
-          <div className={cx('channel-item')}>
-            <div className={cx('icon')}>{button.icon}</div>
+          <div className="font-primary font-semibold text-sm border border-solid border-black/10 text-black/80 py-0 px-3 flex items-center justify-center h-11 relative cursor-pointer mb-4 break-keep space-nowrap bg-white">
+            <div className="flex absolute text-lg left-3">{button.icon}</div>
             {button.text}
           </div>
         </a>
       ) : (
         <div>
-          <div className={cx('channel-item')}>
-            <div className={cx('icon')}>{button.icon}</div>
+          <div className="font-primary font-semibold text-sm border border-solid border-black/10 text-black/80 py-0 px-3 flex items-center justify-center h-11 relative cursor-pointer mb-4 break-keep space-nowrap bg-white">
+            <div className="flex absolute text-lg left-3">{button.icon}</div>
             {button.text}
           </div>
         </div>

@@ -13,8 +13,9 @@ function EmailAndPasswordLoginForm() {
       .then((data) => {
         if (data.meta && data.meta.token) {
           localStorage.setItem('user', JSON.stringify(data))
+          window.location.reload()
         } else {
-          alert(data.message)
+          alert('Username or password is invalid! Please try again')
         }
       })
       .catch((error) => {

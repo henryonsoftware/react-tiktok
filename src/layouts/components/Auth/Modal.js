@@ -10,8 +10,11 @@ function Modal({ children, onClose }) {
   return (
     <div className="z-50 fixed overflow-auto outline-none flex" style={{ inset: 0 }}>
       <div className="fixed inset-0" style={{ background: 'rgba(0, 0, 0, 0.5)' }}></div>
-      <div className="rounded-lg m-auto relative h-4/5 bg-white overflow-hidden" style={{ maxHeight: '693px' }}>
-        <div className="relative h-full pt-12 flex flex-col" style={{ width: '483px' }}>
+      <div
+        className="rounded-lg m-auto relative h-4/5 bg-white overflow-hidden w-11/12 sm:w-4/6 md:w-3/6 lg:w-2/6"
+        style={{ maxHeight: '693px' }}
+      >
+        <div className="relative h-full pt-12 flex flex-col">
           {value.navigateBack && (
             <div
               className="absolute top-5 left-5 text-xl cursor-pointer"

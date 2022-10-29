@@ -58,7 +58,7 @@ function Search() {
   return (
     // Interactive tippy element may not be accessible via keyboard navigation because it is not directly after the reference element in the DOM source order.
     // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
-    <div className="hidden md:block">
+    <div className="hidden md:block md:w-72 lg:w-80">
       <HeadlessTippy
         interactive
         visible={showResult && searchResult.length > 0}
@@ -74,14 +74,11 @@ function Search() {
         )}
         onClickOutside={handleShowResult}
       >
-        <div
-          className="relative h-12 bg-black/5 rounded-full pl-4 flex border border-solid border-transparent focus-within:border-black/20 after:content-[''] after:absolute after:top-2.5 after:right-14 after:h-6 after:w-px after:bg-black/10"
-          style={{ width: '361px' }}
-        >
+        <div className="relative  h-12 bg-black/5 rounded-full pl-4 flex border border-solid border-transparent focus-within:border-black/20 after:content-[''] after:absolute after:top-2.5 after:right-14 after:h-6 after:w-px after:bg-black/10">
           <input
             className="peer font-primary caret-primary h-full text-black/80 text-base bg-transparent flex-1 pr-10"
             value={searchValue}
-            placeholder="Search accounts and videos"
+            placeholder="Search..."
             spellCheck={false}
             ref={searchInputEl}
             onChange={handleChange}

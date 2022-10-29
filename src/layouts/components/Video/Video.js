@@ -4,6 +4,7 @@ import { faHeart, faCommentDots, faShare, faMusic, faCircleCheck } from '@fortaw
 import AccountPreview from '~/components/SidebarAccounts/AccountPreview'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import { useState, useEffect } from 'react'
+import Image from '~/components/Image'
 
 function Video({ video }) {
   const preview = () => {
@@ -42,22 +43,28 @@ function Video({ video }) {
   }, [])
 
   return (
-    <div className="flex items-start py-5 border-b border-solid border-black/10" style={{ maxWidth: '692px' }}>
+    <div className="flex items-start py-5 border-b border-solid border-black/5" style={{ maxWidth: '692px' }}>
       <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
         <a href={`@${video.user.nickname}`} className="hidden sm:block">
-          <div className="w-10 h-10 md:w-14 md:h-14">
-            <img
-              className="rounded-full object-cover overflow-hidden"
-              style={{ width: 'inherit', height: 'inherit' }}
+          <div className="w-10 h-10 sm:w-14 sm:h-14">
+            <Image
               src={video.user.avatar}
               alt={video.user.nickname}
+              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover overflow-hidden"
+              fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
             />
           </div>
         </a>
       </Tippy>
       <div className="w-full ml-0 sm:ml-4">
         <div className="relative">
-          <div className="flex items-center mb-1 mr-24">
+          <div className="flex items-start mb-1 mr-24">
+            <Image
+              src={video.user.avatar}
+              alt={video.user.nickname}
+              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover overflow-hidden sm:hidden mr-3"
+              fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
+            />
             <a href={`/@${video.user.nickname}`}>
               <h3 className="hover:underline block md:inline-block text-base font-bold mr-2">{`${video.user.first_name} ${video.user.last_name}`}</h3>
               {video.user.tick && (

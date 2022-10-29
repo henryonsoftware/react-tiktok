@@ -56,14 +56,14 @@ function SignUp() {
   return (
     <>
       <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
-        <div className="m-auto" style={{ width: '375px' }}>
-          <h3 className="text-center text-4xl font-bold my-4 mx-auto">Sign up for TikTok</h3>
+        <div className="m-auto w-4/5">
+          <h3 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold my-4 mx-auto">Sign up for TikTok</h3>
           {renderButtons()}
         </div>
       </div>
 
       <div className="w-full flex items-center justify-center bg-white py-4 px-7.5">
-        <p className="font-primary text-black/50 text-xs w-96 text-center">
+        <p className="font-primary text-black/50 text-xs px-4 md:w-72 lg:w-96 md:text-center">
           By continuing, you agree to TikTok's{' '}
           <a
             className="text-black/80 hover:underline"

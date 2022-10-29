@@ -10,7 +10,7 @@ function DefaultLayout({ children }) {
         <div>
           <Sidebar />
         </div>
-        <div className="ml-16 md:ml-96 md:w-3/4">{children}</div>
+        <div className="ml-16 md:ml-60 lg:ml-96 md:w-3/4">{children}</div>
       </div>
     </div>
   )

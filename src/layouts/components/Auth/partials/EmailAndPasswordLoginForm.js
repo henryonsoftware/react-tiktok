@@ -26,8 +26,8 @@ function EmailAndPasswordLoginForm() {
   return (
     <>
       <div className="overflow-auto" style={{ flex: '1 1 0%' }}>
-        <div className="m-auto" style={{ width: '375px' }}>
-          <h3 className="text-center text-4xl font-bold my-4 mx-auto">Log in</h3>
+        <div className="m-auto w-4/5">
+          <h3 className="text-center text-2xl md:text-3xl lg:text-4xl font-bold my-4 mx-auto">Log in</h3>
 
           <form>
             <div className="text-base font-semibold flex justify-between mb-2">

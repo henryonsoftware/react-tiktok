@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-function MenuItem({ title, to, icon, activeIcon }) {
+function MenuItem({ title, to, icon }) {
   return (
     <NavLink
       to={to}
@@ -13,8 +13,7 @@ function MenuItem({ title, to, icon, activeIcon }) {
         }
       }}
     >
-      <span className="flex">{icon}</span>
-      <span className="hidden">{activeIcon}</span>
+      {icon}
       <h2 className="hidden md:block text-lg font-bold ml-2">{title}</h2>
     </NavLink>
   )

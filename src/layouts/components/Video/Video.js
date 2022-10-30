@@ -46,11 +46,11 @@ function Video({ video }) {
     <div className="flex items-start py-5 border-b border-solid border-black/5" style={{ maxWidth: '692px' }}>
       <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
         <a href={`@${video.user.nickname}`} className="hidden sm:block">
-          <div className="w-10 h-10 sm:w-14 sm:h-14">
+          <div className="w-14 h-14">
             <Image
               src={video.user.avatar}
               alt={video.user.nickname}
-              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover overflow-hidden"
+              className="w-14 h-14 rounded-full object-cover overflow-hidden"
               fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
             />
           </div>
@@ -59,12 +59,15 @@ function Video({ video }) {
       <div className="w-full ml-0 sm:ml-4">
         <div className="relative">
           <div className="flex items-start mb-1 mr-24">
-            <Image
-              src={video.user.avatar}
-              alt={video.user.nickname}
-              className="w-10 h-10 sm:w-14 sm:h-14 rounded-full object-cover overflow-hidden sm:hidden mr-3"
-              fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
-            />
+            <div className="w-10 h-10 mr-3 sm:hidden">
+              <Image
+                src={video.user.avatar}
+                alt={video.user.nickname}
+                className="w-10 h-10 rounded-full object-cover overflow-hidden"
+                style={{ maxWidth: '2.5rem', maxHeight: '2.5rem' }}
+                fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
+              />
+            </div>
             <a href={`/@${video.user.nickname}`}>
               <h3 className="hover:underline block md:inline-block text-base font-bold mr-2">{`${video.user.first_name} ${video.user.last_name}`}</h3>
               {video.user.tick && (

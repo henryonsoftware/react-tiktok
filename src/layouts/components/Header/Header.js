@@ -229,12 +229,15 @@ function Header() {
 
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <Image
-                className="ml-4 h-8 w-8 object-cover rounded-full cursor-pointer"
-                src={currentUser.data.avatar}
-                alt={currentUser.data.nickname}
-                fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
-              />
+              <div className="w-8 h-8 ml-4">
+                <Image
+                  src={currentUser.data.avatar}
+                  alt={currentUser.data.nickname}
+                  className="w-8 h-8 rounded-full object-cover overflow-hidden cursor-pointer"
+                  style={{ maxWidth: '2rem', maxHeight: '2rem' }}
+                  fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"
+                />
+              </div>
             ) : (
               <button className="ml-4 p-2 text-lg bg-transparent cursor-pointer">
                 <FontAwesomeIcon icon={faEllipsisVertical} />

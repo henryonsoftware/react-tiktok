@@ -50,6 +50,8 @@ function Video({ video }) {
   useEffect(() => {
     if (isVisible) {
       if (!playing) {
+        // Rewind the video and play from beginning
+        videoRef.current.currentTime = 0
         videoRef.current.play()
         setPlaying(true)
       }

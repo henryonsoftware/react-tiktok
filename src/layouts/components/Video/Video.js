@@ -1,10 +1,11 @@
+import { useState, useEffect, useRef } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots, faShare, faMusic, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import AccountPreview from '~/components/SidebarAccounts/AccountPreview'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
-import { useState, useEffect } from 'react'
 import Image from '~/components/Image'
+import useElementOnScreen from '~/components/hooks/useElementOnScreen'
 
 function Video({ video }) {
   const preview = () => {
@@ -23,7 +24,11 @@ function Video({ video }) {
   }
 
   const [description, setDescription] = useState('')
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState(['foryourpage', 'foryou', 'hot'])
+  const [playing, setPlaying] = useState(false)
+  const videoRef = useRef(null)
+  const options = { root: null, rootMargin: '0px', threshold: 0.7 }
+  const isVisible = useElementOnScreen(options, videoRef)
 
   useEffect(() => {
     const videoDesc = video.description
@@ -42,8 +47,22 @@ function Video({ video }) {
     }
   }, [])
 
+  useEffect(() => {
+    if (isVisible) {
+      if (!playing) {
+        videoRef.current.play()
+        setPlaying(true)
+      }
+    } else {
+      if (playing) {
+        videoRef.current.pause()
+        setPlaying(false)
+      }
+    }
+  }, [isVisible])
+
   return (
-    <div className="flex items-start py-5 border-b border-solid border-black/5" style={{ maxWidth: '692px' }}>
+    <div className="flex items-start py-6 border-b border-solid border-black/5" style={{ maxWidth: '692px' }}>
       <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
         <a href={`@${video.user.nickname}`} className="hidden sm:block">
           <div className="w-14 h-14">
@@ -81,15 +100,16 @@ function Video({ video }) {
           </button>
           <div className="text-base mb-2 mr-24">
             {description}
+            <br />
             {tags.map((tag, key) => (
-              <a key={key} href={`/tag/${tag}`} className="font-bold mx-1 hover:underline">
+              <a key={key} href={`/tag/${tag}`} className="font-bold mr-1.5 hover:underline">
                 #{tag}
               </a>
             ))}
           </div>
 
           {video.music && (
-            <div className="text-base flex items-center mb-2">
+            <div className="text-base flex items-center mb-3">
               <FontAwesomeIcon icon={faMusic} className="mr-2" size="sm"></FontAwesomeIcon>
               <a className="font-semibold hover:underline" href="#">
                 {video.music}
@@ -100,11 +120,11 @@ function Video({ video }) {
           <div className="flex">
             <div className="mr-4">
               <video
+                ref={videoRef}
                 className="w-full rounded-lg overflow-hidden"
                 style={{ width: '286px' }}
                 controls
                 loop={true}
-                autoPlay
                 playsInline
                 muted
                 poster={video.thumb_url}

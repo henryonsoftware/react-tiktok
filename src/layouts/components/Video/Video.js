@@ -126,9 +126,8 @@ function Video({ video }) {
                 className="w-full rounded-lg overflow-hidden"
                 style={{ width: '286px' }}
                 controls
-                loop={true}
+                loop
                 playsInline
-                muted
                 poster={video.thumb_url}
               >
                 <source src={video.file_url} type="video/mp4" />

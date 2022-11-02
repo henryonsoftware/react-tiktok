@@ -6,6 +6,7 @@ import AccountPreview from '~/components/SidebarAccounts/AccountPreview'
 import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import Image from '~/components/Image'
 import useElementOnScreen from '~/components/hooks/useElementOnScreen'
+import * as userService from '~/services/userService'
 
 function Video({ video }) {
   const preview = () => {
@@ -29,6 +30,7 @@ function Video({ video }) {
   const videoRef = useRef(null)
   const options = { root: null, rootMargin: '0px', threshold: 0.7 }
   const isVisible = useElementOnScreen(options, videoRef)
+  const [followed, setFollowed] = useState(video.user.is_followed)
 
   useEffect(() => {
     const videoDesc = video.description
@@ -62,6 +64,38 @@ function Video({ video }) {
       }
     }
   }, [isVisible])
+
+  const handleToggleFollow = () => {
+    const currentUser = JSON.parse(localStorage.getItem('user'))
+    if (!currentUser || !currentUser.meta.token) {
+      alert('Please login!')
+      return
+    }
+
+    if (followed) {
+      userService
+        .unfollowAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+        .then((res) => {
+          if (res.data) {
+            setFollowed(res.data.is_followed)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } else {
+      userService
+        .followAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+        .then((res) => {
+          if (res.data) {
+            setFollowed(res.data.is_followed)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
 
   const handleLikeVideo = () => {
     alert('The API does not support like a video now! Try again later')
@@ -105,9 +139,18 @@ function Video({ video }) {
               <h4 className="block md:inline-block text-sm">{video.user.nickname}</h4>
             </a>
           </div>
-          <button className="absolute right-0 top-2 rounded-sm border border-solid border-primary bg-white hover:bg-secondary text-primary text-base font-semibold text-center px-4 sm:px-6 py-0 sm:py-0.5">
-            Follow
+
+          <button
+            className={`absolute right-0 top-2 rounded border border-solid bg-white text-base font-semibold text-center px-4 sm:px-6 py-0 sm:py-0.5 ${
+              followed
+                ? 'border-black/10 hover:bg-black/5 text-black/70'
+                : 'border-primary hover:bg-secondary text-primary'
+            }`}
+            onClick={() => handleToggleFollow()}
+          >
+            {followed ? 'Following' : 'Follow'}
           </button>
+
           <div className="text-base mb-2 mr-24">
             {description}
             <br />

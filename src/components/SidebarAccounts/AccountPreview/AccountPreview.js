@@ -1,10 +1,46 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from '~/components/Button'
+import * as userService from '~/services/userService'
 
 function AccountPreview({ data }) {
+  const [followed, setFollowed] = useState(data.is_followed)
+
+  const handleToggleFollow = () => {
+    const currentUser = JSON.parse(localStorage.getItem('user'))
+    if (!currentUser || !currentUser.meta.token) {
+      alert('Please login!')
+      return
+    }
+
+    if (followed) {
+      userService
+        .unfollowAnUser({ userId: data.id, accessToken: currentUser.meta.token })
+        .then((res) => {
+          if (res.data) {
+            setFollowed(res.data.is_followed)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    } else {
+      userService
+        .followAnUser({ userId: data.id, accessToken: currentUser.meta.token })
+        .then((res) => {
+          if (res.data) {
+            setFollowed(res.data.is_followed)
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
+
   return (
     <div className="w-72 py-3 px-5">
       <header className="flex items-center justify-between mb-3">
@@ -18,10 +54,12 @@ function AccountPreview({ data }) {
           }}
         />
         <Button
-          classes="flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-white bg-primary border border-solid border-primary hover:border-primary"
-          style={{ background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55' }}
+          classes={`flex items-center justify-center ml-4 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 border border-solid ${
+            followed ? 'border-black/10 hover:bg-black/5 text-black/70' : 'border-primary bg-primary text-white'
+          }`}
+          onClick={() => handleToggleFollow()}
         >
-          Follow
+          {followed ? 'Following' : 'Follow'}
         </Button>
       </header>
       <div>

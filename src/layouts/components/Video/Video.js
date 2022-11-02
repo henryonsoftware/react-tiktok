@@ -63,6 +63,14 @@ function Video({ video }) {
     }
   }, [isVisible])
 
+  const handleLikeVideo = () => {
+    alert('The API does not support like a video now! Try again later')
+  }
+
+  const handleClickComment = () => {
+    alert('Coming soon...')
+  }
+
   return (
     <div className="flex items-start py-6 border-b border-solid border-black/5" style={{ maxWidth: '692px' }}>
       <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
@@ -135,11 +143,17 @@ function Video({ video }) {
               </video>
             </div>
             <div className="flex flex-col items-center justify-end">
-              <button className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/5 rounded-full mb-1">
+              <button
+                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/5 rounded-full mb-1"
+                onClick={handleLikeVideo}
+              >
                 <FontAwesomeIcon className="" icon={faHeart} size="xl"></FontAwesomeIcon>
               </button>
               <strong className="text-xs text-black/70 mb-2">{video.likes_count}</strong>
-              <button className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/5 rounded-full mb-1">
+              <button
+                className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-black/5 rounded-full mb-1"
+                onClick={handleClickComment}
+              >
                 <FontAwesomeIcon className="" icon={faCommentDots} size="xl"></FontAwesomeIcon>
               </button>
               <strong className="text-xs text-black/70 mb-2">{video.comments_count}</strong>

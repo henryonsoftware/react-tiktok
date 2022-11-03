@@ -8,13 +8,8 @@ import Image from '~/components/Image'
 import useElementOnScreen from '~/components/hooks/useElementOnScreen'
 import * as userService from '~/services/userService'
 
-function Video({ video }) {
+function Video({ video, isFollowingTheOwner }) {
   const preview = () => {
-    // Don't render preview with the account has been followed
-    if (video.user.is_followed) {
-      return <></>
-    }
-
     return (
       <div tabIndex="-1">
         <PropperWrapper>
@@ -140,16 +135,18 @@ function Video({ video }) {
             </a>
           </div>
 
-          <button
-            className={`absolute right-0 top-2 rounded border border-solid bg-white text-base font-semibold text-center px-4 sm:px-6 py-0 sm:py-0.5 ${
-              followed
-                ? 'border-black/10 hover:bg-black/5 text-black/70'
-                : 'border-primary hover:bg-secondary text-primary'
-            }`}
-            onClick={() => handleToggleFollow()}
-          >
-            {followed ? 'Following' : 'Follow'}
-          </button>
+          {(isFollowingTheOwner === undefined || isFollowingTheOwner === false) && (
+            <button
+              className={`absolute right-0 top-2 rounded border border-solid bg-white text-base font-semibold text-center px-4 sm:px-6 py-0 sm:py-0.5 ${
+                followed
+                  ? 'border-black/10 hover:bg-black/5 text-black/70'
+                  : 'border-primary hover:bg-secondary text-primary'
+              }`}
+              onClick={() => handleToggleFollow()}
+            >
+              {followed ? 'Following' : 'Follow'}
+            </button>
+          )}
 
           <div className="text-base mb-2 mr-24">
             {description}

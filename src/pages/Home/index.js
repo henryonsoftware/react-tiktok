@@ -10,8 +10,11 @@ function HomePage() {
   const [noMoreVideo, setNoMoreVideo] = useState(false)
 
   useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem('user'))
+    const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : ''
+
     timelineService
-      .getVideos('for-you', page)
+      .getVideos({ type: 'for-you', page: page, accessToken: accessToken })
       .then((res) => {
         if (Array.isArray(res.data)) {
           setVideos((prev) => [...prev, ...res.data])
@@ -31,6 +34,7 @@ function HomePage() {
       {videos.map((video) => (
         <Video key={video.id} video={video} />
       ))}
+      {noMoreVideo && <p className="text-center">No more video to load</p>}
     </div>
   )
 }

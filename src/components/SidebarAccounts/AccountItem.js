@@ -35,7 +35,7 @@ function AccountItem({ data }) {
         placement="bottom-start"
       >
         <Link to={`/@${data.nickname}`}>
-          <div className="flex items-center p-2 cursor-pointer rounded hover:bg-black/5">
+          <div className="flex items-center p-2 cursor-pointer rounded md:hover:bg-black/5">
             <img
               className="w-8 h-8 rounded-full object-cover m-0 md:mr-3"
               src={data.avatar}

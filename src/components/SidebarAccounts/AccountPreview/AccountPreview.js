@@ -57,7 +57,7 @@ function AccountPreview({ data }) {
           classes={`flex items-center justify-center ml-4 font-primary font-semibold text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 border border-solid ${
             followed ? 'border-black/10 hover:bg-black/5 text-black/70' : 'border-primary bg-primary text-white'
           }`}
-          onClick={() => handleToggleFollow()}
+          onClick={handleToggleFollow}
         >
           {followed ? 'Following' : 'Follow'}
         </Button>

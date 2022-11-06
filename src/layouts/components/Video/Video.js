@@ -142,7 +142,7 @@ function Video({ video, isFollowingTheOwner }) {
                   ? 'border-black/10 hover:bg-black/5 text-black/70'
                   : 'border-primary hover:bg-secondary text-primary'
               }`}
-              onClick={() => handleToggleFollow()}
+              onClick={handleToggleFollow}
             >
               {followed ? 'Following' : 'Follow'}
             </button>

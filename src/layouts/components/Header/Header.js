@@ -65,7 +65,7 @@ const MENU_ITEMS = [
   },
 ]
 
-function Header() {
+function Header({ wider }) {
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faUser} />,
@@ -165,10 +165,12 @@ function Header() {
 
   return (
     <header
-      className="w-full py-2 flex justify-center bg-white z-50 fixed top-0 left-0"
+      className={`py-2 bg-white z-50 fixed top-0 left-0 ${
+        wider ? 'max-w-full container' : 'flex w-full justify-center'
+      }`}
       style={{ boxShadow: '0px 1px 1px rgba(0, 0, 0, 0.12)' }}
     >
-      <div className="h-full flex items-center justify-between py-0 px-6" style={{ width: '1150px' }}>
+      <div className="h-full flex items-center justify-between py-0 px-6" style={{ width: wider ? 'auto' : '1150px' }}>
         <Link to={config.routes.home} className="flex">
           <img src={images.logo} />
         </Link>

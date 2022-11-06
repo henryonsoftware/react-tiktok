@@ -54,3 +54,16 @@ export const unfollowAnUser = async ({ userId, accessToken }) => {
     console.log(error)
   }
 }
+
+export const getUserProfile = async ({ nickname, accessToken }) => {
+  try {
+    const res = await httpRequest.get(`users/@${nickname}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
+    return res.data
+  } catch (error) {
+    console.log(error)
+  }
+}

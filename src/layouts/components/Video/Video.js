@@ -175,6 +175,7 @@ function Video({ video, isFollowingTheOwner }) {
                 style={{ width: '286px' }}
                 controls
                 loop
+                muted
                 playsInline
                 poster={video.thumb_url}
               >

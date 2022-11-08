@@ -66,11 +66,13 @@ const MENU_ITEMS = [
 ]
 
 function Header({ wider }) {
+  const currentUser = JSON.parse(localStorage.getItem('user'))
+
   const userMenu = [
     {
       icon: <FontAwesomeIcon icon={faUser} />,
       title: 'View profile',
-      to: '/@henrybui',
+      to: '/@profile',
     },
     {
       icon: <FontAwesomeIcon icon={faCoins} />,
@@ -91,7 +93,6 @@ function Header({ wider }) {
     },
   ]
 
-  const currentUser = JSON.parse(localStorage.getItem('user'))
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [children, setChildren] = useState(<Login />)
   const [navigateBack, setNavigateBack] = useState(null)
@@ -111,6 +112,9 @@ function Header({ wider }) {
       case '/logout':
         localStorage.removeItem('user')
         window.location.reload()
+        break
+      case '/@profile':
+        window.location.href = `/@${currentUser.data.nickname}`
         break
       default:
         break

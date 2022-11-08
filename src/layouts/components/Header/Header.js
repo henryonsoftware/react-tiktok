@@ -214,7 +214,10 @@ function Header({ wider }) {
                 classes="flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-white bg-primary border border-solid border-primary hover:border-primary"
                 style={{ background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55' }}
                 to="/"
-                onClick={() => setShowAuthModal(true)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  setShowAuthModal(true)
+                }}
               >
                 Log in
               </Button>

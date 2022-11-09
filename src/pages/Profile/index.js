@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Tippy from '@tippyjs/react'
 import * as userService from '~/services/userService'
-import { LockIcon, FollowedIcon } from '~/components/Icons'
+import { LockIcon, FollowedIcon, PenIcon } from '~/components/Icons'
 
 function Profile() {
   const { nickname } = useParams()
@@ -69,6 +69,46 @@ function Profile() {
       })
   }
 
+  const renderButtons = () => {
+    if (currentUser && currentUser.data.nickname === nickname) {
+      return (
+        <button
+          className="text-base font-semibold rounded-md cursor-pointer py-1 px-3 w-40 h-10 border border-solid border-black/20 bg-white hover:bg-black/5 flex items-center justify-center"
+          onClick={handleFollow}
+        >
+          <PenIcon width={20} height={20} classes="mr-2" /> Edit profile
+        </button>
+      )
+    }
+
+    if (followed) {
+      return (
+        <>
+          <button className="text-base font-semibold rounded-md cursor-pointer py-1 px-3 w-40 h-10 bg-white text-primary border border-solid border-primary hover:bg-secondary">
+            Message
+          </button>
+          <Tippy content="Unfollow" placement="bottom">
+            <button
+              className="flex items-center justify-center ml-2 rounded border border-solid border-black/30 w-10 h-10 cursor-pointer bg-transparent text-black/80"
+              onClick={handleUnfollow}
+            >
+              <FollowedIcon width={20} height={20} />
+            </button>
+          </Tippy>
+        </>
+      )
+    }
+
+    return (
+      <button
+        className="text-base font-semibold rounded-md cursor-pointer py-1 px-3 w-40 h-10 bg-primary text-white"
+        onClick={handleFollow}
+      >
+        Follow
+      </button>
+    )
+  }
+
   return user ? (
     <div className="py-6 px-4">
       <div className="flex items-start">
@@ -82,30 +122,7 @@ function Profile() {
         <div className="flex flex-col">
           <div className="font-bold text-xl md:text-2xl lg:text-3xl cursor-pointer mb-2">{user.nickname}</div>
           <div className="font-semibold text-base lg:text-lg cursor-pointer">{`${user.first_name} ${user.last_name}`}</div>
-          <div className="flex items-center justify-end md:justify-start mt-4">
-            {followed ? (
-              <>
-                <button className="text-lg font-semibold rounded-md cursor-pointer py-1 px-3 w-44 h-10 bg-white text-primary border border-solid border-primary hover:bg-secondary">
-                  Message
-                </button>
-                <Tippy content="Unfollow" placement="bottom">
-                  <button
-                    className="flex items-center justify-center ml-2 rounded border border-solid border-black/30 w-10 h-10 cursor-pointer bg-transparent text-black/80"
-                    onClick={handleUnfollow}
-                  >
-                    <FollowedIcon width={20} height={20} />
-                  </button>
-                </Tippy>
-              </>
-            ) : (
-              <button
-                className="text-lg font-semibold rounded-md cursor-pointer py-1 px-3 w-44 h-10 bg-primary text-white"
-                onClick={handleFollow}
-              >
-                Follow
-              </button>
-            )}
-          </div>
+          <div className="flex items-center justify-end md:justify-start mt-4">{renderButtons()}</div>
         </div>
       </div>
       <div className="flex flex-row items-center justify-between sm:justify-start my-6">

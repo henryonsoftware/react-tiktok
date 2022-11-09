@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import Tippy from '@tippyjs/react'
 import * as userService from '~/services/userService'
 import { LockIcon, FollowedIcon, PenIcon } from '~/components/Icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 
 function Profile() {
   const { nickname } = useParams()
@@ -120,7 +122,15 @@ function Profile() {
           />
         </div>
         <div className="flex flex-col">
-          <div className="font-bold text-xl md:text-2xl lg:text-3xl cursor-pointer mb-2">{user.nickname}</div>
+          <div className="flex items-center font-bold text-xl md:text-2xl lg:text-3xl cursor-pointer mb-2">
+            {user.nickname}{' '}
+            {user.tick && (
+              <FontAwesomeIcon
+                className="ml-2 text-badge-blue text-base md:text-lg lg:text-xl"
+                icon={faCircleCheck}
+              ></FontAwesomeIcon>
+            )}
+          </div>
           <div className="font-semibold text-base lg:text-lg cursor-pointer">{`${user.first_name} ${user.last_name}`}</div>
           <div className="flex items-center justify-end md:justify-start mt-4">{renderButtons()}</div>
         </div>

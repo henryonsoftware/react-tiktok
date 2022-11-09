@@ -116,7 +116,7 @@ function Video({ video, isFollowingTheOwner }) {
       </Tippy>
       <div className="w-full ml-0 sm:ml-4">
         <div className="relative">
-          <div className="flex items-start mb-1 mr-24">
+          <div className="flex items-start mb-1">
             <div className="w-10 h-10 mr-3 sm:hidden">
               <Image
                 src={video.user.avatar}
@@ -137,7 +137,7 @@ function Video({ video, isFollowingTheOwner }) {
 
           {(isFollowingTheOwner === undefined || isFollowingTheOwner === false) && (
             <button
-              className={`absolute right-0 top-2 rounded border border-solid bg-white text-base font-semibold text-center px-4 sm:px-6 py-0 sm:py-0.5 ${
+              className={`absolute right-0 top-2 rounded border border-solid bg-white text-sm md:text-base font-semibold text-center px-4 sm:px-6 py-1 sm:py-0.5 ${
                 followed
                   ? 'border-black/10 hover:bg-black/5 text-black/70'
                   : 'border-primary hover:bg-secondary text-primary'
@@ -148,7 +148,7 @@ function Video({ video, isFollowingTheOwner }) {
             </button>
           )}
 
-          <div className="text-base mb-2 mr-24">
+          <div className="text-base mb-2 md:mr-28 lg:mr-36">
             {description}
             <br />
             {tags.map((tag, key) => (

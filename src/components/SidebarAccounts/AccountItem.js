@@ -33,6 +33,7 @@ function AccountItem({ data }) {
         offset={[0, 2]}
         render={preview}
         placement="bottom-start"
+        touch={false}
       >
         <Link to={`/@${data.nickname}`}>
           <div className="flex items-center p-2 cursor-pointer rounded md:hover:bg-black/5">

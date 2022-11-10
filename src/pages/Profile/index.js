@@ -89,7 +89,7 @@ function Profile() {
           <button className="text-base font-semibold rounded-md cursor-pointer py-1 px-3 w-40 h-10 bg-white text-primary border border-solid border-primary hover:bg-secondary">
             Message
           </button>
-          <Tippy content="Unfollow" placement="bottom">
+          <Tippy content="Unfollow" placement="bottom" touch={false}>
             <button
               className="flex items-center justify-center ml-2 rounded border border-solid border-black/30 w-10 h-10 cursor-pointer bg-transparent text-black/80"
               onClick={handleUnfollow}

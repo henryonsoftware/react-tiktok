@@ -191,12 +191,12 @@ function Header({ wider }) {
               >
                 Upload
               </Button>
-              <Tippy content="Message">
+              <Tippy content="Message" touch={false}>
                 <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <MessageIcon />
                 </button>
               </Tippy>
-              <Tippy content="Inbox">
+              <Tippy content="Inbox" touch={false}>
                 <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <InboxIcon />
                 </button>

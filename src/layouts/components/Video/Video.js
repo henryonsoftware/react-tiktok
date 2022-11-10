@@ -102,7 +102,7 @@ function Video({ video, isFollowingTheOwner }) {
 
   return (
     <div className="flex items-start py-6 border-b border-solid border-black/5" style={{ maxWidth: '692px' }}>
-      <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start">
+      <Tippy interactive delay={[200, 200]} offset={[-10, 2]} render={preview} placement="bottom-start" touch={false}>
         <a href={`@${video.user.nickname}`} className="hidden sm:block">
           <div className="w-14 h-14">
             <Image

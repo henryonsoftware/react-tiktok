@@ -27,12 +27,19 @@ function Following() {
   }, [page])
 
   return (
-    <div className="mx-4 py-8">
-      {videos.map((video) => (
-        <Video key={video.id} video={video} isFollowingTheOwner={true} />
-      ))}
-      {videos.length == 0 && <p className="text-lg">No video from your followers</p>}
-    </div>
+    <>
+      {videos.length > 0 ? (
+        <div className="mx-4 py-8">
+          {videos.map((video) => (
+            <Video key={video.id} video={video} isFollowingTheOwner={true} />
+          ))}
+        </div>
+      ) : (
+        <div className="py-2">
+          <p className="text-lg">No video from your followers</p>
+        </div>
+      )}
+    </>
   )
 }
 

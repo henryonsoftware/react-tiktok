@@ -63,7 +63,7 @@ function AccountPreview({ data }) {
         </Button>
       </header>
       <div>
-        <Link to={`@${data.nickname}`}>
+        <Link to={`/@${data.nickname}`}>
           <h4 className="font-bold text-lg cursor-pointer">
             <span>{data.nickname}</span>
             {data.tick && <FontAwesomeIcon className="ml-1 text-badge-blue" icon={faCircleCheck}></FontAwesomeIcon>}

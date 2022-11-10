@@ -7,9 +7,9 @@ function MenuItem({ title, to, icon }) {
       to={to}
       className={(nav) => {
         if (nav.isActive) {
-          return 'flex items-center p-2 hover:bg-black/5 rounded text-primary'
+          return 'flex items-center p-2 md:hover:bg-black/5 rounded text-primary'
         } else {
-          return 'flex items-center p-2 hover:bg-black/5 rounded'
+          return 'flex items-center p-2 md:hover:bg-black/5 rounded'
         }
       }}
     >

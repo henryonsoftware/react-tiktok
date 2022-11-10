@@ -21,11 +21,13 @@ function Sidebar({ collapse }) {
   const [suggestedUsers, setSuggestedUsers] = useState([])
   const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE)
   const [followingUsers, setFollowingUsers] = useState([])
+  const currentUser = JSON.parse(localStorage.getItem('user'))
+  const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : ''
 
   // Get suggested users
   useEffect(() => {
     userService
-      .getSuggestedUsers({ page, perPage: PER_PAGE })
+      .getSuggestedUsers({ page, perPage: PER_PAGE, accessToken: accessToken })
       .then((data) => {
         if (Array.isArray(data)) {
           setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
@@ -38,11 +40,9 @@ function Sidebar({ collapse }) {
 
   // Get following users
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('user'))
-
-    if (currentUser && currentUser.meta.token) {
+    if (accessToken) {
       userService
-        .getFollowingUsers({ page: followingUsersPage, accessToken: currentUser.meta.token })
+        .getFollowingUsers({ page: followingUsersPage, accessToken: accessToken })
         .then((data) => {
           if (Array.isArray(data)) {
             setFollowingUsers((prev) => [...prev, ...data])

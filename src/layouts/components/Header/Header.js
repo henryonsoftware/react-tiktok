@@ -29,6 +29,8 @@ import PhoneAndPasswordLoginForm from '~/layouts/components/Auth/partials/PhoneA
 import EmailAndPasswordLoginForm from '~/layouts/components/Auth/partials/EmailAndPasswordLoginForm'
 import ResetPasswordWithPhone from '~/layouts/components/Auth/partials/ResetPasswordWithPhone'
 import ResetPasswordWithEmail from '~/layouts/components/Auth/partials/ResetPasswordWithEmail'
+import { useContext } from 'react'
+import { AuthUserContext } from '~/App'
 
 export const ModalBodyNameContext = createContext()
 
@@ -66,7 +68,7 @@ const MENU_ITEMS = [
 ]
 
 function Header({ wider }) {
-  const currentUser = JSON.parse(localStorage.getItem('user'))
+  const authUser = useContext(AuthUserContext)
 
   const userMenu = [
     {
@@ -114,7 +116,7 @@ function Header({ wider }) {
         window.location.reload()
         break
       case '/@profile':
-        window.location.href = `/@${currentUser.data.nickname}`
+        window.location.href = `/@${authUser.data.nickname}`
         break
       default:
         break
@@ -183,7 +185,7 @@ function Header({ wider }) {
 
         {/* List actions button */}
         <div className="flex items-center">
-          {currentUser ? (
+          {authUser ? (
             <>
               <Button
                 classes="hidden sm:flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
@@ -236,12 +238,12 @@ function Header({ wider }) {
             )}
           </ModalBodyNameContext.Provider>
 
-          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
-            {currentUser ? (
+          <Menu items={authUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+            {authUser ? (
               <div className="w-8 h-8 ml-4">
                 <Image
-                  src={currentUser.data.avatar}
-                  alt={currentUser.data.nickname}
+                  src={authUser.data.avatar}
+                  alt={authUser.data.nickname}
                   className="w-8 h-8 rounded-full object-cover overflow-hidden cursor-pointer"
                   style={{ maxWidth: '2rem', maxHeight: '2rem' }}
                   fallback="https://avatars.dicebear.com/api/adventurer/your-custom-seed.svg"

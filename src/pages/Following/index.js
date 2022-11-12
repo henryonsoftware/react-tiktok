@@ -1,4 +1,6 @@
+import { useContext } from 'react'
 import { useEffect, useState } from 'react'
+import { AuthUserContext } from '~/App'
 import Video from '~/layouts/components/Video'
 import * as timelineService from '~/services/timelineService'
 
@@ -7,11 +9,10 @@ const INIT_PAGE = 1
 function Following() {
   const [videos, setVideos] = useState([])
   const [page, setPage] = useState(INIT_PAGE)
+  const authUser = useContext(AuthUserContext)
+  const accessToken = authUser && authUser.meta.token ? authUser.meta.token : ''
 
   useEffect(() => {
-    const currentUser = JSON.parse(localStorage.getItem('user'))
-    const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : ''
-
     if (accessToken) {
       timelineService
         .getVideos({ type: 'following', page: page, accessToken: accessToken })

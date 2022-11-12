@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import Tippy from '@tippyjs/react/headless'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faCommentDots, faShare, faMusic, faCircleCheck } from '@fortawesome/free-solid-svg-icons'
@@ -7,6 +7,7 @@ import { Wrapper as PropperWrapper } from '~/layouts/components/Propper'
 import Image from '~/components/Image'
 import useElementOnScreen from '~/components/hooks/useElementOnScreen'
 import * as userService from '~/services/userService'
+import { AuthUserContext } from '~/App'
 
 function Video({ video, isFollowingTheOwner }) {
   const preview = () => {
@@ -26,6 +27,7 @@ function Video({ video, isFollowingTheOwner }) {
   const options = { root: null, rootMargin: '0px', threshold: 0.7 }
   const isVisible = useElementOnScreen(options, videoRef)
   const [followed, setFollowed] = useState(video.user.is_followed)
+  const authUser = useContext(AuthUserContext)
 
   useEffect(() => {
     const videoDesc = video.description
@@ -61,15 +63,14 @@ function Video({ video, isFollowingTheOwner }) {
   }, [isVisible])
 
   const handleToggleFollow = () => {
-    const currentUser = JSON.parse(localStorage.getItem('user'))
-    if (!currentUser || !currentUser.meta.token) {
+    if (!authUser || !authUser.meta.token) {
       alert('Please login!')
       return
     }
 
     if (followed) {
       userService
-        .unfollowAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+        .unfollowAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
         .then((res) => {
           if (res.data) {
             setFollowed(res.data.is_followed)
@@ -80,7 +81,7 @@ function Video({ video, isFollowingTheOwner }) {
         })
     } else {
       userService
-        .followAnUser({ userId: video.user.id, accessToken: currentUser.meta.token })
+        .followAnUser({ userId: video.user.id, accessToken: authUser.meta.token })
         .then((res) => {
           if (res.data) {
             setFollowed(res.data.is_followed)

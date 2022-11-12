@@ -11,6 +11,8 @@ import {
 } from '~/components/Icons'
 import * as userService from '~/services/userService'
 import SidebarAccountSpinner from './SidebarAccountSpinner'
+import { useContext } from 'react'
+import { AuthUserContext } from '~/App'
 const SidebarAccounts = lazy(() => import('~/components/SidebarAccounts'))
 
 const INIT_PAGE = 1
@@ -21,8 +23,8 @@ function Sidebar({ collapse }) {
   const [suggestedUsers, setSuggestedUsers] = useState([])
   const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE)
   const [followingUsers, setFollowingUsers] = useState([])
-  const currentUser = JSON.parse(localStorage.getItem('user'))
-  const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : ''
+  const authUser = useContext(AuthUserContext)
+  const accessToken = authUser && authUser.meta.token ? authUser.meta.token : ''
 
   // Get suggested users
   useEffect(() => {

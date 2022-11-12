@@ -5,13 +5,15 @@ import * as userService from '~/services/userService'
 import { LockIcon, FollowedIcon, PenIcon } from '~/components/Icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
+import { useContext } from 'react'
+import { AuthUserContext } from '~/App'
 
 function Profile() {
   const { nickname } = useParams()
   const [user, setUser] = useState(null)
   const [followed, setFollowed] = useState(false)
-  const currentUser = JSON.parse(localStorage.getItem('user'))
-  const accessToken = currentUser && currentUser.meta.token ? currentUser.meta.token : ''
+  const authUser = useContext(AuthUserContext)
+  const accessToken = authUser && authUser.meta.token ? authUser.meta.token : ''
 
   useEffect(() => {
     if (nickname) {
@@ -60,7 +62,7 @@ function Profile() {
     }
 
     userService
-      .unfollowAnUser({ userId: user.id, accessToken: currentUser.meta.token })
+      .unfollowAnUser({ userId: user.id, accessToken: authUser.meta.token })
       .then((res) => {
         if (res.data) {
           setFollowed(res.data.is_followed)
@@ -72,7 +74,7 @@ function Profile() {
   }
 
   const renderButtons = () => {
-    if (currentUser && currentUser.data.nickname === nickname) {
+    if (authUser && authUser.data.nickname === nickname) {
       return (
         <button
           className="text-base font-semibold rounded-md cursor-pointer py-1 px-3 w-40 h-10 border border-solid border-black/20 bg-white hover:bg-black/5 flex items-center justify-center"

@@ -5,20 +5,22 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from '~/components/Button'
 import * as userService from '~/services/userService'
+import { useContext } from 'react'
+import { AuthUserContext } from '~/App'
 
 function AccountPreview({ data }) {
+  const authUser = useContext(AuthUserContext)
   const [followed, setFollowed] = useState(data.is_followed)
 
   const handleToggleFollow = () => {
-    const currentUser = JSON.parse(localStorage.getItem('user'))
-    if (!currentUser || !currentUser.meta.token) {
+    if (!authUser || !authUser.meta.token) {
       alert('Please login!')
       return
     }
 
     if (followed) {
       userService
-        .unfollowAnUser({ userId: data.id, accessToken: currentUser.meta.token })
+        .unfollowAnUser({ userId: data.id, accessToken: authUser.meta.token })
         .then((res) => {
           if (res.data) {
             setFollowed(res.data.is_followed)
@@ -29,7 +31,7 @@ function AccountPreview({ data }) {
         })
     } else {
       userService
-        .followAnUser({ userId: data.id, accessToken: currentUser.meta.token })
+        .followAnUser({ userId: data.id, accessToken: authUser.meta.token })
         .then((res) => {
           if (res.data) {
             setFollowed(res.data.is_followed)

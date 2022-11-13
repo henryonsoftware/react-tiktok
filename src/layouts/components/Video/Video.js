@@ -44,7 +44,7 @@ function Video({ video, isFollowingTheOwner }) {
     } else {
       setDescription(videoDesc)
     }
-  }, [])
+  }, [video.description])
 
   useEffect(() => {
     if (isVisible) {
@@ -60,7 +60,7 @@ function Video({ video, isFollowingTheOwner }) {
         setPlaying(false)
       }
     }
-  }, [isVisible])
+  }, [isVisible, playing])
 
   const handleToggleFollow = () => {
     if (!authUser || !authUser.meta.token) {

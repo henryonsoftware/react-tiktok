@@ -20,7 +20,7 @@ function Button({ to, href, classes, leftIcon, rightIcon, children, onClick, ...
   return (
     <Comp className={classes} {...props}>
       {leftIcon && <span className="d-inline-block text-center mr-2">{leftIcon}</span>}
-      <span>{children}</span>
+      {children}
       {rightIcon && <span className="d-inline-block text-center ml-2">{rightIcon}</span>}
     </Comp>
   )

@@ -1,14 +1,7 @@
 import { lazy, Suspense, useState, useEffect } from 'react'
 import config from '~/config'
 import Menu, { MenuItem } from './Menu'
-import {
-  HomeIcon,
-  HomeActiveIcon,
-  PeopleIcon,
-  PeopleActiveIcon,
-  CameraIcon,
-  CameraActiveIcon,
-} from '~/components/Icons'
+import { HomeIcon, PeopleIcon, CameraIcon } from '~/components/Icons'
 import * as userService from '~/services/userService'
 import SidebarAccountSpinner from './SidebarAccountSpinner'
 import { useContext } from 'react'
@@ -38,7 +31,7 @@ function Sidebar({ collapse }) {
       .catch((error) => {
         console.log(error)
       })
-  }, [])
+  }, [accessToken, page])
 
   // Get following users
   useEffect(() => {
@@ -56,7 +49,7 @@ function Sidebar({ collapse }) {
     } else {
       setFollowingUsers([])
     }
-  }, [])
+  }, [followingUsersPage, accessToken])
 
   return (
     <aside

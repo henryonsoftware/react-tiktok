@@ -28,7 +28,7 @@ function HomePage() {
       .catch((error) => {
         console.log(error)
       })
-  }, [page])
+  }, [page, accessToken])
 
   return (
     <div className="mx-4 py-8">

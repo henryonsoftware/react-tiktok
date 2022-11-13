@@ -178,7 +178,7 @@ function Header({ wider }) {
     >
       <div className="h-full flex items-center justify-between py-0 px-6" style={{ width: wider ? 'auto' : '1150px' }}>
         <Link to={config.routes.home} className="flex">
-          <img src={images.logo} />
+          <img src={images.logo} alt="Tiktok" />
         </Link>
 
         <Search />

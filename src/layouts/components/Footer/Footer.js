@@ -16,8 +16,8 @@ function Footer() {
     <div className="pb-8 bg-black">
       <footer className="pt-10 pl-10 md:pl-72 lg:pl-96 relative flex flex-col md:flex-row md:items-start">
         <div className="flex items-end mb-10 md:mb-0 md:absolute md:top-11 md:left-20 lg:left-40">
-          <img src={images.whiteLogoIcon} className="mr-2" />
-          <img src={images.whiteLogoText} />
+          <img src={images.whiteLogoIcon} className="mr-2" alt="Tiktok" />
+          <img src={images.whiteLogoText} alt="Tiktok" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4">
           <div className="flex flex-col mb-6 md:mb-0 md:w-44 flex-1" style={{ maxWidth: '226px' }}>
@@ -95,7 +95,7 @@ function Footer() {
         <select
           className="border border-gray-400 bg-inherit text-white h-8 md:h-10 outline-none rounded-sm"
           style={{ paddingInline: '5px' }}
-          value={lang}
+          value={lang ?? 'en'}
           onChange={(e) => handleChangeLanguage(e)}
         >
           <option value="ar">العربية</option>

@@ -69,6 +69,7 @@ function SignUp() {
             className="text-black/80 hover:underline"
             href="https://www.tiktok.com/legal/terms-of-service-row"
             target="_blank"
+            rel="noreferrer"
           >
             Terms of Service
           </a>{' '}
@@ -77,6 +78,7 @@ function SignUp() {
             className="text-black/80 hover:underline"
             href="https://www.tiktok.com/legal/page/row/privacy-policy"
             target="_blank"
+            rel="noreferrer"
           >
             Privacy Policy
           </a>

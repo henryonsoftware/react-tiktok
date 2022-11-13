@@ -25,7 +25,7 @@ function Following() {
           console.log(error)
         })
     }
-  }, [page])
+  }, [page, accessToken])
 
   return (
     <>

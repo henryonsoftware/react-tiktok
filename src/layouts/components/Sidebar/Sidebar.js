@@ -12,44 +12,67 @@ const INIT_PAGE = 1
 const PER_PAGE = 5
 
 function Sidebar({ collapse }) {
-  const [page, setPage] = useState(INIT_PAGE)
-  const [suggestedUsers, setSuggestedUsers] = useState([])
-  const [followingUsersPage, setFollowingUsersPage] = useState(INIT_PAGE)
-  const [followingUsers, setFollowingUsers] = useState([])
+  const [sPerPage, setSPerPage] = useState(PER_PAGE)
+  const [sUsers, setSUsers] = useState([])
+  const [fPerPage, setFPerPage] = useState(INIT_PAGE)
+  const [fUsers, setFUser] = useState([])
   const authUser = useContext(AuthUserContext)
   const accessToken = authUser && authUser.meta.token ? authUser.meta.token : ''
 
   // Get suggested users
   useEffect(() => {
     userService
-      .getSuggestedUsers({ page, perPage: PER_PAGE, accessToken: accessToken })
+      .getSuggestedUsers({ page: 1, perPage: sPerPage, accessToken: accessToken })
       .then((data) => {
         if (Array.isArray(data)) {
-          setSuggestedUsers((prevUsers) => [...prevUsers, ...data])
+          setSUsers(data)
         }
       })
       .catch((error) => {
         console.log(error)
       })
-  }, [accessToken, page])
+  }, [accessToken, sPerPage])
 
   // Get following users
   useEffect(() => {
     if (accessToken) {
       userService
-        .getFollowingUsers({ page: followingUsersPage, accessToken: accessToken })
+        .getFollowingUsers({ page: fPerPage, accessToken: accessToken })
         .then((data) => {
           if (Array.isArray(data)) {
-            setFollowingUsers((prev) => [...prev, ...data])
+            if (fPerPage === INIT_PAGE) {
+              setFUser(data)
+            } else {
+              setFUser((prev) => [...prev, ...data])
+            }
           }
         })
         .catch((error) => {
           console.log(error)
         })
     } else {
-      setFollowingUsers([])
+      setFUser([])
     }
-  }, [followingUsersPage, accessToken])
+  }, [accessToken, fPerPage])
+
+  function moreSUsers() {
+    if (sUsers.length === PER_PAGE) {
+      // Get 20 users
+      setSPerPage(PER_PAGE * 4)
+    } else {
+      setSPerPage(PER_PAGE)
+    }
+  }
+
+  function moreFUsers() {
+    // Stop call API if last page has < PER_PAGE users (no more users)
+    // Or has reached 6th page
+    if (fUsers.length === PER_PAGE * 6 || fUsers.length < fPerPage * PER_PAGE) {
+      setFPerPage(INIT_PAGE)
+    } else {
+      setFPerPage((prevPage) => prevPage + 1)
+    }
+  }
 
   return (
     <aside
@@ -63,8 +86,18 @@ function Sidebar({ collapse }) {
         <MenuItem title="Live" to={config.routes.live} icon={<CameraIcon />} />
       </Menu>
       <Suspense fallback={<SidebarAccountSpinner label="Suggested accounts" />}>
-        <SidebarAccounts label="Suggested accounts" moreLabel="See all" data={suggestedUsers} />
-        <SidebarAccounts label="Following accounts" moreLabel="See more" data={followingUsers} />
+        <SidebarAccounts
+          label="Suggested accounts"
+          moreLabel={sUsers.length === PER_PAGE ? 'See all' : 'See less'}
+          data={sUsers}
+          moreFunc={moreSUsers}
+        />
+        <SidebarAccounts
+          label="Following accounts"
+          moreLabel={fUsers.length === PER_PAGE * 6 || fUsers.length < PER_PAGE * fPerPage ? 'See less' : 'See more'}
+          data={fUsers}
+          moreFunc={moreFUsers}
+        />
       </Suspense>
     </aside>
   )

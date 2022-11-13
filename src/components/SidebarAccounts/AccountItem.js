@@ -29,7 +29,7 @@ function AccountItem({ data }) {
         popperOptions={{
           strategy: 'fixed',
         }}
-        delay={[200, 100]}
+        delay={[700, 200]}
         offset={[0, 2]}
         render={preview}
         placement="bottom-start"

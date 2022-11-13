@@ -25,11 +25,11 @@ function Upload() {
             <div className="mt-6 lg:mt-10">
               <div className="flex flex-col lg:flex-row items-start">
                 <div
+                  className="w-full lg:w-1/3 my-6 lg:mr-6 rounded-md border-2 border-dashed border-primary lg:border-black/20 lg:hover:border-primary transition duration-200 cursor-pointer"
                   style={{ minHeight: '458px' }}
-                  className="w-full lg:w-1/3 flex item-centers justify-center my-6 lg:mr-6 rounded-md border-2 border-dashed border-primary lg:border-black/20 lg:hover:border-primary transition duration-200 cursor-pointer"
                   onClick={handleSelectFile}
                 >
-                  <div className="px-9 flex flex-col justify-center">
+                  <div className="flex flex-col justify-center p-8">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="my-4 mx-auto"
@@ -52,10 +52,13 @@ function Upload() {
                     <p className="text-black/40 mb-2 text-center">720x1280 resolution or higher</p>
                     <p className="text-black/40 mb-2 text-center">Up to 10 minutes</p>
                     <p className="text-black/40 mb-2 text-center">Less than 2 GB</p>
-                    <Button classes="w-full bg-primary hover:bg-primary-dark text-white text-center text-semibold text-base rounded py-2 px-4 mt-4 transition duration-200">
+                    <button
+                      className="bg-primary hover:bg-primary-dark text-white text-center text-semibold text-base rounded py-2 px-4 my-4 transition duration-200"
+                      style={{ minWidth: '150px' }}
+                    >
                       Select file
-                    </Button>
-                    <input id="uploadFile" type="file" accept="video/*" className="w-0 h-0" />
+                    </button>
+                    <input id="uploadFile" type="file" accept="video/*" className="invisible" />
                   </div>
                 </div>
                 <div className="w-full lg:w-2/3">

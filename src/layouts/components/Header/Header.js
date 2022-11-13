@@ -187,12 +187,14 @@ function Header({ wider }) {
         <div className="flex items-center">
           {authUser ? (
             <>
-              <Button
-                classes="hidden sm:flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
-                leftIcon={<FontAwesomeIcon icon={faPlus} />}
-              >
-                Upload
-              </Button>
+              <Link to="/upload">
+                <Button
+                  classes="hidden sm:flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
+                  leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                >
+                  Upload
+                </Button>
+              </Link>
               <Tippy content="Message" touch={false}>
                 <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <MessageIcon />
@@ -209,6 +211,7 @@ function Header({ wider }) {
               <Button
                 classes="hidden sm:flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
                 leftIcon={<FontAwesomeIcon icon={faPlus} className="hidden md:inline-block" />}
+                onClick={() => alert('Please login!')}
               >
                 Upload
               </Button>

@@ -2,11 +2,9 @@ import Header from '~/layouts/components/Header'
 
 function HeaderOnly({ children }) {
   return (
-    <div>
-      <Header />
-      <div className="container">
-        <div className="content">{children}</div>
-      </div>
+    <div className="flex flex-col items-center">
+      <Header wider={true} />
+      <div className="max-w-full w-full mt-16">{children}</div>
     </div>
   )
 }

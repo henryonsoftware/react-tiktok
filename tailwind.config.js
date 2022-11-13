@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#fe2c55',
+        'primary-dark': '#e0274b',
         secondary: '#fe2c550f',
         'badge-blue': '#20d5ec',
       },

@@ -52,10 +52,10 @@ function Upload() {
                     <p className="text-black/40 mb-2 text-center">720x1280 resolution or higher</p>
                     <p className="text-black/40 mb-2 text-center">Up to 10 minutes</p>
                     <p className="text-black/40 mb-2 text-center">Less than 2 GB</p>
-                    <Button classes="my-4 w-full bg-primary text-white text-center text-semibold text-base rounded py-1 px-4">
-                      <input id="uploadFile" type="file" accept="video/*" className="w-0 h-0" />
+                    <Button classes="w-full bg-primary hover:bg-primary-dark text-white text-center text-semibold text-base rounded py-2 px-4 mt-4 transition duration-200">
                       Select file
                     </Button>
+                    <input id="uploadFile" type="file" accept="video/*" className="w-0 h-0" />
                   </div>
                 </div>
                 <div className="w-full lg:w-2/3">

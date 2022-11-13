@@ -12,7 +12,9 @@ import {
   faGear,
   faArrowRightFromBracket,
   faCoins,
+  faArrowUpFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
+
 import images from '~/assets/images'
 import Button from '~/components/Button'
 import Menu from '~/layouts/components/Propper/Menu'
@@ -186,26 +188,35 @@ function Header({ wider }) {
         {/* List actions button */}
         <div className="flex items-center">
           {authUser ? (
-            <>
-              <Link to="/upload">
+            <div className="flex items-center">
+              <Link to="/upload" className="flex items-center">
+                {/* Display on desktop */}
                 <Button
                   classes="hidden sm:flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-black/80 font-semibold hover:bg-black/5 border border-solid border-black/10"
                   leftIcon={<FontAwesomeIcon icon={faPlus} />}
                 >
                   Upload
                 </Button>
+
+                {/* Display on mobile */}
+                <FontAwesomeIcon
+                  className="sm:hidden cursor-pointer bg-transparent text-black/80 w-6 h-5"
+                  icon={faArrowUpFromBracket}
+                />
               </Link>
+
               <Tippy content="Message" touch={false}>
                 <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <MessageIcon />
                 </button>
               </Tippy>
+
               <Tippy content="Inbox" touch={false}>
                 <button className="relative h-8 cursor-pointer ml-4 bg-transparent text-black/80">
                   <InboxIcon />
                 </button>
               </Tippy>
-            </>
+            </div>
           ) : (
             <>
               <Button
@@ -215,6 +226,7 @@ function Header({ wider }) {
               >
                 Upload
               </Button>
+
               <Button
                 classes="flex items-center justify-center ml-4 first:ml-0 last:ml-0 font-primary text-base py-2 px-4 rounded cursor-pointer select-none w-28 h-9 text-white bg-primary border border-solid border-primary hover:border-primary"
                 style={{ background: 'linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55' }}

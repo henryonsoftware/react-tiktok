@@ -95,7 +95,7 @@ function Upload() {
                     <select
                       name="privacy"
                       id="privacy"
-                      className="w-full lg:w-1/ bg-white 2 border border-solid border-black/20 rounded h-10 px-2 text-base outline-none"
+                      className="w-full lg:w-1/2 bg-white 2 border border-solid border-black/20 rounded h-10 px-2 text-base outline-none"
                     >
                       <option value="public">Public</option>
                       <option value="friends">Friends</option>

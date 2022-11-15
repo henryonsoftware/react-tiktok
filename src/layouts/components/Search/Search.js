@@ -13,7 +13,7 @@ function Search() {
   const [searchResult, setSearchResult] = useState([])
   const [showResult, setShowResult] = useState(true)
   const [loading, setLoading] = useState(false)
-
+  const [cursor, setCursor] = useState(-1)
   const debounceValue = useDebounce(searchValue, 700)
 
   const searchInputEl = useRef()
@@ -35,6 +35,19 @@ function Search() {
       return
     }
     setSearchValue(searchValue)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 38 && cursor >= 0) {
+      // press Arrow Up on keyboard
+      setCursor((prev) => prev - 1)
+    } else if (e.keyCode === 40 && cursor < searchResult.length - 1) {
+      // press Arrow Down on keyboard
+      setCursor((prev) => prev + 1)
+    } else if (e.keyCode === 13 && cursor >= 0 && cursor <= searchResult.length - 1) {
+      // press Enter on keyboard
+      window.location.href = `/@${searchResult[cursor].nickname}`
+    }
   }
 
   useEffect(() => {
@@ -66,8 +79,14 @@ function Search() {
           <div style={{ width: '361px' }} tabIndex="-1" {...attrs}>
             <PropperWrapper>
               <h4 className="h-8 py-1 px-3 text-sm font-semibold text-black/50">Accounts</h4>
-              {searchResult.map((result) => (
-                <AccountItem key={result.id} data={result} />
+              {searchResult.map((account, index) => (
+                <AccountItem
+                  key={account.id}
+                  data={account}
+                  className={`flex items-center py-2 px-4 cursor-pointer hover:bg-black/5 ${
+                    cursor === index ? 'bg-black/5' : ''
+                  }`}
+                />
               ))}
             </PropperWrapper>
           </div>
@@ -83,6 +102,7 @@ function Search() {
             ref={searchInputEl}
             onChange={handleChange}
             onFocus={() => setShowResult(true)}
+            onKeyDown={(e) => handleKeyDown(e)}
           />
 
           {searchValue && !loading && (

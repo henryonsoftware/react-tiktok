@@ -4,9 +4,9 @@ import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 import Image from '../Image'
 
-function AccountItem({ data }) {
+function AccountItem({ data, className }) {
   return (
-    <Link to={`/@${data.nickname}`} className="flex items-center py-2 px-4 cursor-pointer hover:bg-black/5">
+    <Link to={`/@${data.nickname}`} className={className}>
       <Image
         src={data.avatar}
         alt={data.full_name}

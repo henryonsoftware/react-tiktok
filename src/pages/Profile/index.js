@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { AuthUserContext } from '~/App'
+import Videos from './Videos'
+import Liked from './Liked'
 
 function Profile() {
   const { nickname } = useParams()
@@ -14,28 +16,19 @@ function Profile() {
   const [followed, setFollowed] = useState(false)
   const authUser = useContext(AuthUserContext)
   const accessToken = authUser && authUser.meta.token ? authUser.meta.token : ''
+  const [activeTab, setActiveTab] = useState('videos')
 
   useEffect(() => {
-    if (nickname) {
-      userService
-        .getUserProfile({ nickname, accessToken })
-        .then((data) => {
-          setUser(data)
-          setFollowed(data.is_followed)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
+    userService
+      .getUserProfile({ nickname, accessToken })
+      .then((data) => {
+        setUser(data)
+        setFollowed(data.is_followed)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [nickname, accessToken])
-
-  function handleOnMouseOver(e) {
-    e.target.play()
-  }
-
-  function handleOnMouseLeave(e) {
-    e.target.pause()
-  }
 
   function handleFollow() {
     if (!accessToken) {
@@ -156,40 +149,32 @@ function Profile() {
       </div>
 
       <div className="w-full lg:w-2/5 flex flex-row items-stretch justify-stretch mb-2 text-lg font-semibold relative after:absolute after:content-[''] after:bottom-0 after:w-full after:h-px after:bg-black/20">
-        <div className="peer/videos flex flex-1 items-center justify-center h-11 cursor-pointer">
+        <div
+          className="peer/videos flex flex-1 items-center justify-center h-11 cursor-pointer"
+          onClick={() => setActiveTab('videos')}
+        >
           <p className="flex">
             <span>Videos</span>
           </p>
         </div>
-        <div className="peer/liked flex flex-1 items-center justify-center h-11 cursor-pointer text-black/40">
+        <div
+          className="peer/liked flex flex-1 items-center justify-center h-11 cursor-pointer text-black/40"
+          onClick={() => setActiveTab('liked')}
+        >
           <p className="flex items-center">
             <LockIcon width="18" height="18" classes="mr-2" />
             Liked
           </p>
         </div>
-        <div className="peer-hover/videos:translate-x-0 peer-hover/liked:translate-x-full transition-transform ease-in-out duration-200 absolute left-0 bottom-0 w-1/2 h-0.5 bg-black/80"></div>
+        <div
+          className={`${
+            activeTab === 'videos' ? 'translate-x-0' : 'translate-x-full'
+          }  peer-hover/videos:translate-x-0 peer-hover/liked:translate-x-full transition-transform ease-in-out duration-200 absolute left-0 bottom-0 w-1/2 h-0.5 bg-black/80`}
+        ></div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-4">
-        {user.videos.map((video, key) => (
-          <div key={key}>
-            <video
-              className="rounded-lg overflow-hidden cursor-pointer"
-              controls
-              loop
-              muted
-              playsInline
-              poster={video.thumb_url}
-              onMouseOver={(e) => handleOnMouseOver(e)}
-              onMouseLeave={(e) => handleOnMouseLeave(e)}
-            >
-              <source src={video.file_url} type="video/mp4" />
-              Your browser does not support HTML video.
-            </video>
-            <p className="text-base w-full truncate my-2">{video.description}</p>
-          </div>
-        ))}
-      </div>
+      {activeTab === 'videos' && <Videos user={user} videos={user.videos} />}
+      {activeTab === 'liked' && <Liked user={user} />}
     </div>
   ) : (
     <div>Cannot fetch user profile. Try again later!</div>

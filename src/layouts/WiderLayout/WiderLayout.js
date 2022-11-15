@@ -6,11 +6,11 @@ function WiderLayout({ children }) {
   return (
     <div>
       <Header wider={true} />
-      <div className="max-w-full container flex justify-between py-0 px-0 md:px-2 mt-16">
+      <div className="max-w-full container flex py-0 px-0 md:px-2 mt-16">
         <div>
           <Sidebar collapse={true} />
         </div>
-        <div className="ml-16 md:ml-60 z-0">{children}</div>
+        <div className="ml-16 md:ml-60 z-0 flex-1">{children}</div>
       </div>
     </div>
   )
